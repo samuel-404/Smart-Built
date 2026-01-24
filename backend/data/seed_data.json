@@ -1,0 +1,615 @@
+{
+  "components": {
+    "cpus": [
+      {
+        "id": "cpu_001",
+        "name": "Intel Core i3-12100F",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 4,
+        "threads": 8,
+        "base_clock": 3.3,
+        "boost_clock": 4.3,
+        "tdp": 58,
+        "performance_score": 45,
+        "price": 8500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "budget"
+      },
+      {
+        "id": "cpu_002",
+        "name": "Intel Core i5-13400F",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 10,
+        "threads": 16,
+        "base_clock": 2.5,
+        "boost_clock": 4.6,
+        "tdp": 65,
+        "performance_score": 72,
+        "price": 17500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_003",
+        "name": "Intel Core i7-13700KF",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 16,
+        "threads": 24,
+        "base_clock": 3.4,
+        "boost_clock": 5.4,
+        "tdp": 125,
+        "performance_score": 92,
+        "price": 38500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_004",
+        "name": "AMD Ryzen 5 5600",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 3.5,
+        "boost_clock": 4.4,
+        "tdp": 65,
+        "performance_score": 65,
+        "price": 12500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": false,
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_005",
+        "name": "AMD Ryzen 7 7700X",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 4.5,
+        "boost_clock": 5.4,
+        "tdp": 105,
+        "performance_score": 88,
+        "price": 29500,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_006",
+        "name": "AMD Ryzen 9 7950X",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 16,
+        "threads": 32,
+        "base_clock": 4.5,
+        "boost_clock": 5.7,
+        "tdp": 170,
+        "performance_score": 98,
+        "price": 52000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "category": "enthusiast"
+      }
+    ],
+    "motherboards": [
+      {
+        "id": "mb_001",
+        "name": "ASUS Prime B660M-A D4",
+        "brand": "ASUS",
+        "socket": "LGA1700",
+        "chipset": "B660",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 5333,
+        "m2_slots": 2,
+        "pcie_slots": 1,
+        "price": 11500,
+        "performance_score": 55
+      },
+      {
+        "id": "mb_002",
+        "name": "MSI PRO Z790-A WiFi DDR5",
+        "brand": "MSI",
+        "socket": "LGA1700",
+        "chipset": "Z790",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 7200,
+        "m2_slots": 4,
+        "pcie_slots": 2,
+        "price": 24500,
+        "performance_score": 82
+      },
+      {
+        "id": "mb_003",
+        "name": "Gigabyte B550 AORUS Elite V2",
+        "brand": "Gigabyte",
+        "socket": "AM4",
+        "chipset": "B550",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 5200,
+        "m2_slots": 2,
+        "pcie_slots": 2,
+        "price": 13500,
+        "performance_score": 65
+      },
+      {
+        "id": "mb_004",
+        "name": "ASUS ROG Strix B650E-F Gaming WiFi",
+        "brand": "ASUS",
+        "socket": "AM5",
+        "chipset": "B650E",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 6400,
+        "m2_slots": 3,
+        "pcie_slots": 2,
+        "price": 28500,
+        "performance_score": 85
+      },
+      {
+        "id": "mb_005",
+        "name": "ASRock B660M Pro RS",
+        "brand": "ASRock",
+        "socket": "LGA1700",
+        "chipset": "B660",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "ram_slots": 2,
+        "max_ram_speed": 4800,
+        "m2_slots": 1,
+        "pcie_slots": 1,
+        "price": 8500,
+        "performance_score": 45
+      },
+      {
+        "id": "mb_006",
+        "name": "MSI MAG X670E TOMAHAWK WiFi",
+        "brand": "MSI",
+        "socket": "AM5",
+        "chipset": "X670E",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 6600,
+        "m2_slots": 4,
+        "pcie_slots": 2,
+        "price": 32000,
+        "performance_score": 90
+      }
+    ],
+    "gpus": [
+      {
+        "id": "gpu_001",
+        "name": "NVIDIA GeForce RTX 4060",
+        "brand": "NVIDIA",
+        "vram": 8,
+        "vram_type": "GDDR6",
+        "tdp": 115,
+        "length_mm": 240,
+        "performance_score": 70,
+        "price": 28000,
+        "category": "mid-range",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_002",
+        "name": "NVIDIA GeForce RTX 4070 Super",
+        "brand": "NVIDIA",
+        "vram": 12,
+        "vram_type": "GDDR6X",
+        "tdp": 220,
+        "length_mm": 300,
+        "performance_score": 88,
+        "price": 52000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_003",
+        "name": "NVIDIA GeForce RTX 4080 Super",
+        "brand": "NVIDIA",
+        "vram": 16,
+        "vram_type": "GDDR6X",
+        "tdp": 320,
+        "length_mm": 336,
+        "performance_score": 95,
+        "price": 98000,
+        "category": "enthusiast",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_004",
+        "name": "AMD Radeon RX 7600",
+        "brand": "AMD",
+        "vram": 8,
+        "vram_type": "GDDR6",
+        "tdp": 165,
+        "length_mm": 260,
+        "performance_score": 65,
+        "price": 24500,
+        "category": "mid-range",
+        "ray_tracing": true,
+        "fsr_version": 3
+      },
+      {
+        "id": "gpu_005",
+        "name": "AMD Radeon RX 7800 XT",
+        "brand": "AMD",
+        "vram": 16,
+        "vram_type": "GDDR6",
+        "tdp": 263,
+        "length_mm": 320,
+        "performance_score": 85,
+        "price": 46000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "fsr_version": 3
+      },
+      {
+        "id": "gpu_006",
+        "name": "NVIDIA GeForce GTX 1650",
+        "brand": "NVIDIA",
+        "vram": 4,
+        "vram_type": "GDDR6",
+        "tdp": 75,
+        "length_mm": 200,
+        "performance_score": 35,
+        "price": 12500,
+        "category": "budget",
+        "ray_tracing": false,
+        "dlss_version": null
+      }
+    ],
+    "ram": [
+      {
+        "id": "ram_001",
+        "name": "Corsair Vengeance LPX 16GB (2x8GB) DDR4-3200",
+        "brand": "Corsair",
+        "type": "DDR4",
+        "capacity_gb": 16,
+        "sticks": 2,
+        "speed_mhz": 3200,
+        "latency": "CL16",
+        "price": 3200,
+        "performance_score": 50
+      },
+      {
+        "id": "ram_002",
+        "name": "G.Skill Trident Z5 32GB (2x16GB) DDR5-6000",
+        "brand": "G.Skill",
+        "type": "DDR5",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 6000,
+        "latency": "CL30",
+        "price": 9500,
+        "performance_score": 85
+      },
+      {
+        "id": "ram_003",
+        "name": "Kingston Fury Beast 32GB (2x16GB) DDR4-3600",
+        "brand": "Kingston",
+        "type": "DDR4",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 3600,
+        "latency": "CL18",
+        "price": 5800,
+        "performance_score": 65
+      },
+      {
+        "id": "ram_004",
+        "name": "Corsair Vengeance 32GB (2x16GB) DDR5-5600",
+        "brand": "Corsair",
+        "type": "DDR5",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 5600,
+        "latency": "CL36",
+        "price": 7500,
+        "performance_score": 75
+      },
+      {
+        "id": "ram_005",
+        "name": "ADATA XPG Lancer 64GB (2x32GB) DDR5-6400",
+        "brand": "ADATA",
+        "type": "DDR5",
+        "capacity_gb": 64,
+        "sticks": 2,
+        "speed_mhz": 6400,
+        "latency": "CL32",
+        "price": 18000,
+        "performance_score": 92
+      }
+    ],
+    "psus": [
+      {
+        "id": "psu_001",
+        "name": "Corsair CV550 550W 80+ Bronze",
+        "brand": "Corsair",
+        "wattage": 550,
+        "efficiency": "80+ Bronze",
+        "modular": false,
+        "price": 4200,
+        "performance_score": 45
+      },
+      {
+        "id": "psu_002",
+        "name": "Cooler Master MWE Gold 650W 80+ Gold",
+        "brand": "Cooler Master",
+        "wattage": 650,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 6500,
+        "performance_score": 65
+      },
+      {
+        "id": "psu_003",
+        "name": "Corsair RM850x 850W 80+ Gold",
+        "brand": "Corsair",
+        "wattage": 850,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 11500,
+        "performance_score": 82
+      },
+      {
+        "id": "psu_004",
+        "name": "Seasonic Focus GX-1000 1000W 80+ Gold",
+        "brand": "Seasonic",
+        "wattage": 1000,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 14500,
+        "performance_score": 90
+      },
+      {
+        "id": "psu_005",
+        "name": "EVGA SuperNOVA 750W 80+ Gold",
+        "brand": "EVGA",
+        "wattage": 750,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 8500,
+        "performance_score": 75
+      }
+    ],
+    "cases": [
+      {
+        "id": "case_001",
+        "name": "Ant Esports ICE-112",
+        "brand": "Ant Esports",
+        "form_factor": [
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 320,
+        "cpu_cooler_height_mm": 155,
+        "price": 2500,
+        "performance_score": 40
+      },
+      {
+        "id": "case_002",
+        "name": "Corsair 4000D Airflow",
+        "brand": "Corsair",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 360,
+        "cpu_cooler_height_mm": 170,
+        "price": 8500,
+        "performance_score": 75
+      },
+      {
+        "id": "case_003",
+        "name": "NZXT H510 Flow",
+        "brand": "NZXT",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 381,
+        "cpu_cooler_height_mm": 165,
+        "price": 7500,
+        "performance_score": 70
+      },
+      {
+        "id": "case_004",
+        "name": "Lian Li O11 Dynamic EVO",
+        "brand": "Lian Li",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 420,
+        "cpu_cooler_height_mm": 167,
+        "price": 14500,
+        "performance_score": 88
+      }
+    ],
+    "storage": [
+      {
+        "id": "storage_001",
+        "name": "Samsung 980 500GB NVMe",
+        "brand": "Samsung",
+        "type": "NVMe",
+        "capacity_gb": 500,
+        "read_speed": 3500,
+        "write_speed": 3000,
+        "price": 3800,
+        "performance_score": 60
+      },
+      {
+        "id": "storage_002",
+        "name": "Samsung 990 Pro 1TB NVMe",
+        "brand": "Samsung",
+        "type": "NVMe",
+        "capacity_gb": 1000,
+        "read_speed": 7450,
+        "write_speed": 6900,
+        "price": 9500,
+        "performance_score": 92
+      },
+      {
+        "id": "storage_003",
+        "name": "WD Blue SN580 1TB NVMe",
+        "brand": "Western Digital",
+        "type": "NVMe",
+        "capacity_gb": 1000,
+        "read_speed": 4150,
+        "write_speed": 4150,
+        "price": 5500,
+        "performance_score": 72
+      },
+      {
+        "id": "storage_004",
+        "name": "Crucial P3 Plus 2TB NVMe",
+        "brand": "Crucial",
+        "type": "NVMe",
+        "capacity_gb": 2000,
+        "read_speed": 5000,
+        "write_speed": 4200,
+        "price": 9000,
+        "performance_score": 78
+      }
+    ]
+  },
+  "usage_profiles": {
+    "gaming": {
+      "name": "Gaming",
+      "weights": {
+        "gpu": 0.4,
+        "cpu": 0.25,
+        "ram": 0.15,
+        "storage": 0.1,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "storage_gb": 500,
+        "gpu_vram": 6
+      }
+    },
+    "content_creation": {
+      "name": "Content Creation / Video Editing",
+      "weights": {
+        "cpu": 0.35,
+        "gpu": 0.25,
+        "ram": 0.25,
+        "storage": 0.1,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "storage_gb": 1000,
+        "cpu_cores": 8
+      }
+    },
+    "student": {
+      "name": "Student / General Use",
+      "weights": {
+        "cpu": 0.3,
+        "storage": 0.25,
+        "ram": 0.2,
+        "gpu": 0.1,
+        "motherboard": 0.1,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 8,
+        "storage_gb": 256
+      }
+    },
+    "workstation": {
+      "name": "Professional Workstation",
+      "weights": {
+        "cpu": 0.35,
+        "ram": 0.3,
+        "gpu": 0.2,
+        "storage": 0.1,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 64,
+        "storage_gb": 2000,
+        "cpu_cores": 12
+      }
+    }
+  },
+  "budget_tiers": {
+    "budget": {
+      "name": "Budget Build",
+      "min": 35000,
+      "max": 50000,
+      "description": "Entry-level gaming and productivity"
+    },
+    "mid_range": {
+      "name": "Mid-Range",
+      "min": 50000,
+      "max": 80000,
+      "description": "Solid 1080p gaming and content creation"
+    },
+    "high_end": {
+      "name": "High-End",
+      "min": 80000,
+      "max": 120000,
+      "description": "1440p gaming and professional work"
+    },
+    "enthusiast": {
+      "name": "Enthusiast",
+      "min": 120000,
+      "max": 200000,
+      "description": "4K gaming and heavy workloads"
+    }
+  }
+}
