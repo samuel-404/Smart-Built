@@ -2,37 +2,208 @@
 @tailwind components;
 @tailwind utilities;
 
-::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 4px;
-}
+/* ═══════════════════════════════════════════
+   SmartBuild — Apple-Caliber White Minimalist
+   Ref: Apple.com / Linear / Stripe
+   ═══════════════════════════════════════════ */
 
-::-webkit-scrollbar-thumb {
-  background: #c1c1c1;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #a1a1a1;
+:root {
+  --canvas: #F5F5F7;
+  --white: #FFFFFF;
+  --obsidian: #1D1D1F;
+  --slate: #86868B;
+  --mist: #D2D2D7;
+  --whisper: #E8E8ED;
+  --apple-blue: #0071E3;
+  --apple-blue-hover: #0077ED;
+  --graphite: #212121;
+  --success: #34C759;
+  --danger: #FF3B30;
+  --shadow-xs: 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 30px rgba(0, 0, 0, 0.03);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.06);
+  --shadow-lift: 0 8px 30px rgba(0, 0, 0, 0.08);
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: var(--canvas);
+  color: var(--obsidian);
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
 }
 
-input[type='range'] {
-  -webkit-appearance: none;
-  appearance: none;
+/* Scrollbar — invisible until hovered */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-input[type='range']:focus {
+::-webkit-scrollbar-thumb {
+  background: var(--mist);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--slate);
+}
+
+/* Range slider */
+input[type='range'] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: var(--whisper);
+  border-radius: 2px;
   outline: none;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.04);
+  transition: box-shadow 0.2s;
+}
+
+input[type='range']::-webkit-slider-thumb:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(0, 0, 0, 0.06);
+}
+
+input[type='range']::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--white);
+  border-radius: 50%;
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+/* Focus */
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--apple-blue);
+  outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+  background: rgba(0, 113, 227, 0.15);
+  color: var(--obsidian);
+}
+
+/* Global transitions */
+* {
+  transition-property: background-color, border-color, color, opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Three.js hero canvas */
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Component row left-accent on hover */
+.row-accent {
+  position: relative;
+}
+
+.row-accent::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  background: var(--apple-blue);
+  border-radius: 0 2px 2px 0;
+  transition: width 0.2s ease;
+}
+
+.row-accent:hover::before {
+  width: 3px;
+}
+
+/* Glass nav */
+.glass-nav {
+  background: rgba(245, 245, 247, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* Soft-depth card */
+.soft-card {
+  background: var(--white);
+  box-shadow: var(--shadow-md);
+  border-radius: 18px;
+}
+
+/* Dot indicators */
+.dot-ok {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--success);
+  flex-shrink: 0;
+}
+
+.dot-err {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--danger);
+  flex-shrink: 0;
+}
+
+/* GSAP initial state for staggered reveals */
+.gsap-reveal {
+  opacity: 0;
+  transform: scale(0.98) translateY(8px);
 }

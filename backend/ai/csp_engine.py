@@ -120,49 +120,49 @@ class CSPEngine:
         cpu_budget = budget_allocations.get('cpu', budget * 0.25)
         cpu_domain = [
             cpu for cpu in self.components['cpus']
-            if cpu['price'] <= cpu_budget * 1.3
+            if cpu['price'] <= cpu_budget * 2.5
         ]
         domains['cpu'] = Variable('cpu', cpu_domain if cpu_domain else self.components['cpus'][:2])
         
         gpu_budget = budget_allocations.get('gpu', budget * 0.35)
         gpu_domain = [
             gpu for gpu in self.components['gpus']
-            if gpu['price'] <= gpu_budget * 1.3
+            if gpu['price'] <= gpu_budget * 2.5
         ]
         domains['gpu'] = Variable('gpu', gpu_domain if gpu_domain else self.components['gpus'][:2])
         
         mb_budget = budget_allocations.get('motherboard', budget * 0.12)
         mb_domain = [
             mb for mb in self.components['motherboards']
-            if mb['price'] <= mb_budget * 1.5
+            if mb['price'] <= mb_budget * 2.5
         ]
         domains['motherboard'] = Variable('motherboard', mb_domain if mb_domain else self.components['motherboards'][:2])
         
         ram_budget = budget_allocations.get('ram', budget * 0.08)
         ram_domain = [
             ram for ram in self.components['ram']
-            if ram['price'] <= ram_budget * 1.5
+            if ram['price'] <= ram_budget * 2.5
         ]
         domains['ram'] = Variable('ram', ram_domain if ram_domain else self.components['ram'][:2])
         
         psu_budget = budget_allocations.get('psu', budget * 0.08)
         psu_domain = [
             psu for psu in self.components['psus']
-            if psu['price'] <= psu_budget * 1.5
+            if psu['price'] <= psu_budget * 2.5
         ]
         domains['psu'] = Variable('psu', psu_domain if psu_domain else self.components['psus'][:2])
         
         case_budget = budget_allocations.get('case', budget * 0.07)
         case_domain = [
             case for case in self.components['cases']
-            if case['price'] <= case_budget * 1.5
+            if case['price'] <= case_budget * 2.5
         ]
         domains['case'] = Variable('case', case_domain if case_domain else self.components['cases'][:2])
         
         storage_budget = budget_allocations.get('storage', budget * 0.08)
         storage_domain = [
             storage for storage in self.components['storage']
-            if storage['price'] <= storage_budget * 1.5
+            if storage['price'] <= storage_budget * 2.5
         ]
         domains['storage'] = Variable('storage', storage_domain if storage_domain else self.components['storage'][:2])
         

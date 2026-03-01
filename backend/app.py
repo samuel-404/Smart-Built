@@ -183,7 +183,8 @@ def get_recommendations():
         
         budget = data.get('budget')
         usage_type = data.get('usage_type', 'gaming')
-        num_builds = data.get('num_builds', 3)
+        num_builds = data.get('num_builds', 1)  # Default to 1 build
+        cpu_brand = data.get('cpu_brand', None)  # Optional: 'Intel' or 'AMD'
         
         if not budget:
             return jsonify({
@@ -218,10 +219,57 @@ def get_recommendations():
                 "error": f"Invalid usage type. Valid types: {valid_usage_types}"
             }), 400
         
-        logger.info(f"Generating recommendations: Budget=₹{budget:,}, Usage={usage_type}")
+        # Validate cpu_brand if provided
+        if cpu_brand and cpu_brand not in ('Intel', 'AMD'):
+            return jsonify({
+                "success": False,
+                "error": f"Invalid CPU brand. Valid brands: Intel, AMD"
+            }), 400
+        
+        logger.info(f"Generating recommendations: Budget=₹{budget:,}, Usage={usage_type}, CPU Brand={cpu_brand or 'Any'}")
         
         csp_engine = CSPEngine(DATA['components'])
         compatible_components = csp_engine.get_compatible_components(budget, usage_type)
+        
+        # Filter by CPU brand preference if specified
+        if cpu_brand and 'cpu' in compatible_components:
+            brand_cpus = [
+                cpu for cpu in compatible_components['cpu']
+                if cpu.get('brand', '') == cpu_brand
+            ]
+            logger.info(f"Brand filter ({cpu_brand}): {len(compatible_components['cpu'])} CPUs -> {len(brand_cpus)}")
+            if brand_cpus:
+                compatible_components['cpu'] = brand_cpus
+                
+                # Also filter motherboards to only compatible sockets
+                brand_sockets = set(cpu.get('socket', '') for cpu in brand_cpus)
+                if 'motherboard' in compatible_components and brand_sockets:
+                    brand_boards = [
+                        mb for mb in compatible_components['motherboard']
+                        if mb.get('socket', '') in brand_sockets
+                    ]
+                    if brand_boards:
+                        logger.info(f"Socket filter: {len(compatible_components['motherboard'])} boards -> {len(brand_boards)}")
+                        compatible_components['motherboard'] = brand_boards
+        
+        # HARD FILTER: For budget builds (< 45k), ONLY allow APUs (integrated graphics)
+        # Remove ALL GPUs and non-APU CPUs for budget builds
+        if budget < 45000:
+            logger.info("Budget build detected - filtering for APU-only builds")
+            
+            # Keep ONLY CPUs with integrated graphics
+            if 'cpu' in compatible_components:
+                apu_only = [
+                    cpu for cpu in compatible_components['cpu']
+                    if cpu.get('integrated_graphics', False) == True
+                ]
+                logger.info(f"APU filter: {len(compatible_components['cpu'])} CPUs -> {len(apu_only)} APUs")
+                compatible_components['cpu'] = apu_only
+            
+            # Remove ALL GPUs for budget builds (APU handles graphics)
+            if 'gpu' in compatible_components:
+                logger.info(f"Removing {len(compatible_components['gpu'])} GPUs for APU build")
+                compatible_components['gpu'] = []
         
         csp_summary = {k: len(v) for k, v in compatible_components.items()}
         logger.info(f"CSP filtered components: {csp_summary}")
@@ -265,6 +313,85 @@ def get_recommendations():
     
     except Exception as e:
         logger.error(f"Error generating recommendations: {str(e)}", exc_info=True)
+        return jsonify({
+            "success": False,
+            "error": f"Internal server error: {str(e)}"
+        }), 500
+
+
+@app.route('/api/alternatives', methods=['POST'])
+def get_alternatives():
+    """
+    Get compatible alternative components for a specific type.
+    Accepts the current build and a component_type, returns compatible swaps.
+    """
+    try:
+        data = request.get_json()
+        
+        if not data:
+            return jsonify({"success": False, "error": "No data provided"}), 400
+        
+        component_type = data.get('component_type')
+        current_build = data.get('current_build', {})
+        
+        if not component_type:
+            return jsonify({"success": False, "error": "component_type is required"}), 400
+        
+        # Map component type to data key
+        type_to_data = {
+            'cpu': 'cpus', 'gpu': 'gpus', 'motherboard': 'motherboards',
+            'ram': 'ram', 'psu': 'psus', 'case': 'cases', 'storage': 'storage'
+        }
+        
+        data_key = type_to_data.get(component_type)
+        if not data_key:
+            return jsonify({"success": False, "error": f"Invalid component type: {component_type}"}), 400
+        
+        all_components = DATA.get('components', {}).get(data_key, [])
+        current_component_id = None
+        if component_type in current_build and current_build[component_type]:
+            current_component_id = current_build[component_type].get('id')
+        
+        # Filter for compatibility with the rest of the build
+        compatible = []
+        for candidate in all_components:
+            # Skip the currently selected component
+            if candidate.get('id') == current_component_id:
+                continue
+            
+            # Build a test configuration with the candidate swapped in
+            test_build = {k: v for k, v in current_build.items() if v}
+            test_build[component_type] = candidate
+            
+            # Run CSP validation
+            csp_engine = CSPEngine(DATA['components'])
+            is_valid, issues = csp_engine.validate_build(test_build)
+            
+            if is_valid:
+                compatible.append({
+                    'id': candidate.get('id'),
+                    'name': candidate.get('name'),
+                    'brand': candidate.get('brand'),
+                    'price': candidate.get('price'),
+                    'performance_score': candidate.get('performance_score'),
+                    **{k: v for k, v in candidate.items()
+                       if k not in ['id', 'name', 'brand', 'price', 'performance_score']}
+                })
+        
+        # Sort by price
+        compatible.sort(key=lambda x: x.get('price', 0))
+        
+        logger.info(f"Alternatives for {component_type}: {len(compatible)} compatible out of {len(all_components)}")
+        
+        return jsonify({
+            "success": True,
+            "component_type": component_type,
+            "alternatives": compatible,
+            "total_available": len(all_components)
+        })
+    
+    except Exception as e:
+        logger.error(f"Error fetching alternatives: {str(e)}", exc_info=True)
         return jsonify({
             "success": False,
             "error": f"Internal server error: {str(e)}"

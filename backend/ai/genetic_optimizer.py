@@ -26,11 +26,16 @@ class Individual:
     def get_total_cost(self) -> int:
         return sum(comp.get('price', 0) for comp in self.genes.values())
     
-    def get_total_performance(self, weights: Dict[str, float]) -> float:
+    def get_total_performance(self, weights: Dict[str, float], usage_type: str = None) -> float:
+        """Calculate total performance score based on component weights and usage type"""
         total = 0
         for comp_type, component in self.genes.items():
             weight = weights.get(comp_type, 0.1)
-            score = component.get('performance_score', 50)
+            # For gaming usage, use gaming_score for CPU (X3D CPUs excel at gaming)
+            if comp_type == 'cpu' and usage_type == 'gaming':
+                score = component.get('gaming_score', component.get('performance_score', 50))
+            else:
+                score = component.get('performance_score', 50)
             total += weight * score
         return total
 
@@ -83,19 +88,104 @@ class NSGA2Optimizer:
         attempts = 0
         max_attempts = self.population_size * 10
         
+        # For budget builds (under 45k), ONLY use APU builds (no discrete GPU)
+        # This is strict - budget builds MUST use integrated graphics
+        is_budget_build = self.target_budget < 45000
+        
         while len(population) < self.population_size and attempts < max_attempts:
             attempts += 1
-            individual = self._create_random_individual()
+            
+            if is_budget_build:
+                # STRICT: Budget builds ONLY use APU (integrated graphics)
+                individual = self._create_apu_individual()
+            else:
+                individual = self._create_random_individual()
             
             if individual and self._is_valid_build(individual):
                 population.append(individual)
         
-        while len(population) < self.population_size:
-            individual = self._create_random_individual(relaxed=True)
+        # For budget builds, ONLY create more APU builds - never fall back to GPU builds
+        # But add a safety limit to prevent infinite loops
+        fallback_attempts = 0
+        max_fallback = self.population_size * 5
+        while len(population) < self.population_size and fallback_attempts < max_fallback:
+            fallback_attempts += 1
+            if is_budget_build:
+                individual = self._create_apu_individual()
+                # If APU creation keeps failing, fall back to regular builds
+                if individual is None and fallback_attempts > max_fallback // 2:
+                    individual = self._create_random_individual(relaxed=True)
+            else:
+                individual = self._create_random_individual(relaxed=True)
             if individual:
                 population.append(individual)
         
         return population
+    
+    def _create_apu_individual(self) -> Optional[Individual]:
+        """Create a build with an APU (integrated graphics, no discrete GPU)"""
+        genes = {}
+        
+        # Select APU (CPU with integrated graphics)
+        apu_candidates = [
+            c for c in self.components.get('cpu', [])
+            if c.get('integrated_graphics', False)
+        ]
+        
+        if not apu_candidates:
+            return None
+        
+        # Budget-appropriate APUs
+        max_cpu_price = self.target_budget * 0.35
+        budget_apus = [c for c in apu_candidates if c['price'] <= max_cpu_price]
+        if budget_apus:
+            genes['cpu'] = random.choice(budget_apus)
+        else:
+            genes['cpu'] = min(apu_candidates, key=lambda x: x['price'])
+        
+        # Select compatible motherboard
+        mb_candidates = [
+            mb for mb in self.components.get('motherboard', [])
+            if mb['socket'] == genes['cpu']['socket']
+        ]
+        if mb_candidates:
+            max_mb_price = self.target_budget * 0.20
+            budget_mbs = [mb for mb in mb_candidates if mb['price'] <= max_mb_price]
+            genes['motherboard'] = random.choice(budget_mbs) if budget_mbs else min(mb_candidates, key=lambda x: x['price'])
+        
+        # Select compatible RAM
+        ram_candidates = [
+            r for r in self.components.get('ram', [])
+            if r['type'] in genes['cpu']['supported_ram']
+        ]
+        if ram_candidates:
+            max_ram_price = self.target_budget * 0.15
+            budget_rams = [r for r in ram_candidates if r['price'] <= max_ram_price]
+            genes['ram'] = random.choice(budget_rams) if budget_rams else min(ram_candidates, key=lambda x: x['price'])
+        
+        # NO GPU for APU builds - save money!
+        # (APU's integrated graphics handles display)
+        
+        # Select budget storage
+        if self.components.get('storage'):
+            max_storage_price = self.target_budget * 0.12
+            storage_options = [s for s in self.components['storage'] if s['price'] <= max_storage_price]
+            genes['storage'] = random.choice(storage_options) if storage_options else min(self.components['storage'], key=lambda x: x['price'])
+        
+        # Select budget PSU (lower wattage since no GPU)
+        if self.components.get('psu'):
+            max_psu_price = self.target_budget * 0.10
+            psu_options = [p for p in self.components['psu'] if p['price'] <= max_psu_price]
+            # APU builds need less power
+            genes['psu'] = random.choice(psu_options) if psu_options else min(self.components['psu'], key=lambda x: x['price'])
+        
+        # Select budget case
+        if self.components.get('case'):
+            max_case_price = self.target_budget * 0.10
+            case_options = [c for c in self.components['case'] if c['price'] <= max_case_price]
+            genes['case'] = random.choice(case_options) if case_options else min(self.components['case'], key=lambda x: x['price'])
+        
+        return Individual(genes=genes) if len(genes) >= 5 else None
     
     def _create_random_individual(self, relaxed: bool = False) -> Optional[Individual]:
         """Create a random build configuration"""
@@ -132,6 +222,12 @@ class NSGA2Optimizer:
         """Check if a build is valid (compatible components)"""
         genes = individual.genes
         
+        # HARD LOCK: If no GPU, CPU MUST have integrated graphics
+        # This prevents CPUs like 5600X (no iGPU) from being used without a GPU
+        if 'gpu' not in genes and 'cpu' in genes:
+            if not genes['cpu'].get('integrated_graphics', False):
+                return False  # REJECT: No GPU and CPU has no integrated graphics!
+        
         if 'cpu' in genes and 'motherboard' in genes:
             if genes['cpu']['socket'] != genes['motherboard']['socket']:
                 return False
@@ -166,7 +262,8 @@ class NSGA2Optimizer:
         Objective 1: Maximize Performance Score (weighted by usage)
         Objective 2: Minimize Cost Divergence from Target Budget
         """
-        performance = individual.get_total_performance(self.weights)
+        # Pass usage_type to enable gaming-specific scoring (X3D CPUs)
+        performance = individual.get_total_performance(self.weights, self.usage_type)
         
         total_cost = individual.get_total_cost()
         cost_divergence = abs(total_cost - self.target_budget) / self.target_budget
@@ -274,13 +371,29 @@ class NSGA2Optimizer:
         child1_genes = {}
         child2_genes = {}
         
-        for comp_type in parent1.genes.keys():
-            if random.random() < 0.5:
+        # Get all component types from both parents
+        all_comp_types = set(parent1.genes.keys()) | set(parent2.genes.keys())
+        
+        for comp_type in all_comp_types:
+            p1_has = comp_type in parent1.genes
+            p2_has = comp_type in parent2.genes
+            
+            if p1_has and p2_has:
+                # Both parents have this component - do normal crossover
+                if random.random() < 0.5:
+                    child1_genes[comp_type] = deepcopy(parent1.genes[comp_type])
+                    child2_genes[comp_type] = deepcopy(parent2.genes[comp_type])
+                else:
+                    child1_genes[comp_type] = deepcopy(parent2.genes[comp_type])
+                    child2_genes[comp_type] = deepcopy(parent1.genes[comp_type])
+            elif p1_has:
+                # Only parent1 has this component (e.g., GPU in non-APU build)
                 child1_genes[comp_type] = deepcopy(parent1.genes[comp_type])
+                # child2 doesn't get this component (keeps APU-style)
+            elif p2_has:
+                # Only parent2 has this component
                 child2_genes[comp_type] = deepcopy(parent2.genes[comp_type])
-            else:
-                child1_genes[comp_type] = deepcopy(parent2.genes[comp_type])
-                child2_genes[comp_type] = deepcopy(parent1.genes[comp_type])
+                # child1 doesn't get this component
         
         return Individual(genes=child1_genes), Individual(genes=child2_genes)
     
@@ -429,8 +542,8 @@ class NSGA2Optimizer:
     
     def get_best_builds(self, num_builds: int = 3) -> List[Dict[str, Any]]:
         """
-        Run optimization and return the best builds
-        Returns builds with different trade-offs (performance vs budget)
+        Run optimization and return the best build
+        STRICT: Returns ONLY ONE build that is strictly within budget
         """
         final_population = self.optimize()
         pareto_front = self.get_pareto_front(final_population)
@@ -438,37 +551,24 @@ class NSGA2Optimizer:
         if not pareto_front:
             return []
         
-        builds = []
+        # STRICT: Only builds within budget (0% tolerance - must be <= budget)
+        within_budget = [
+            ind for ind in pareto_front
+            if ind.get_total_cost() <= self.target_budget
+        ]
         
-        pareto_front.sort(key=lambda x: x.objectives[0], reverse=True)
-        if pareto_front:
-            best_perf = self._format_build(pareto_front[0], "Best Performance")
-            builds.append(best_perf)
+        # Sort by performance (best first among those within budget)
+        within_budget.sort(key=lambda x: x.objectives[0], reverse=True)
         
-        pareto_front.sort(key=lambda x: x.objectives[0] + x.objectives[1], reverse=True)
-        if pareto_front and len(builds) < num_builds:
-            best_value = self._format_build(pareto_front[0], "Best Value")
-            if best_value['total_cost'] != builds[0]['total_cost']:
-                builds.append(best_value)
+        # Return ONLY ONE build - the best performing within budget
+        if within_budget:
+            best = within_budget[0]
+            return [self._format_build(best, "Best Build")]
         
-        pareto_front.sort(key=lambda x: x.objectives[1], reverse=True)
-        if pareto_front and len(builds) < num_builds:
-            budget_friendly = self._format_build(pareto_front[0], "Budget Friendly")
-            if budget_friendly['total_cost'] not in [b['total_cost'] for b in builds]:
-                builds.append(budget_friendly)
-        
-        while len(builds) < num_builds and len(pareto_front) > len(builds):
-            idx = len(builds)
-            if idx < len(pareto_front):
-                build = self._format_build(pareto_front[idx], f"Alternative {idx}")
-                if build['total_cost'] not in [b['total_cost'] for b in builds]:
-                    builds.append(build)
-                else:
-                    break
-            else:
-                break
-        
-        return builds[:num_builds]
+        # If no builds within strict budget, find the closest one
+        pareto_front.sort(key=lambda x: x.get_total_cost())
+        closest = pareto_front[0]
+        return [self._format_build(closest, "Closest to Budget")]
     
     def _format_build(self, individual: Individual, label: str) -> Dict[str, Any]:
         """Format an individual as a build recommendation"""
@@ -486,13 +586,27 @@ class NSGA2Optimizer:
             }
         
         total_cost = individual.get_total_cost()
-        performance_score = individual.get_total_performance(self.weights)
+        # Pass usage_type for gaming-specific scoring
+        performance_score = individual.get_total_performance(self.weights, self.usage_type)
         
-        return {
+        # Check if this is an APU build (no discrete GPU)
+        is_apu_build = 'gpu' not in individual.genes
+        has_integrated = individual.genes.get('cpu', {}).get('integrated_graphics', False)
+        
+        result = {
             'label': label,
             'components': components,
             'total_cost': total_cost,
             'performance_score': round(performance_score, 2),
             'budget_utilization': round((total_cost / self.target_budget) * 100, 1),
-            'within_budget': total_cost <= self.target_budget * 1.05
+            'within_budget': total_cost <= self.target_budget * 1.05,
+            'is_apu_build': is_apu_build and has_integrated
         }
+        
+        # Add iGPU info if APU build
+        if is_apu_build and has_integrated:
+            igpu_name = individual.genes.get('cpu', {}).get('igpu_name', 'Integrated Graphics')
+            result['igpu_name'] = igpu_name
+        
+        return result
+

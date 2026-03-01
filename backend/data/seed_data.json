@@ -12,6 +12,7 @@
         "boost_clock": 4.3,
         "tdp": 58,
         "performance_score": 45,
+        "gaming_score": 42,
         "price": 8500,
         "supported_ram": [
           "DDR4",
@@ -31,6 +32,7 @@
         "boost_clock": 4.6,
         "tdp": 65,
         "performance_score": 72,
+        "gaming_score": 68,
         "price": 17500,
         "supported_ram": [
           "DDR4",
@@ -50,6 +52,7 @@
         "boost_clock": 5.4,
         "tdp": 125,
         "performance_score": 92,
+        "gaming_score": 82,
         "price": 38500,
         "supported_ram": [
           "DDR4",
@@ -69,6 +72,7 @@
         "boost_clock": 4.4,
         "tdp": 65,
         "performance_score": 65,
+        "gaming_score": 62,
         "price": 12500,
         "supported_ram": [
           "DDR4"
@@ -87,11 +91,12 @@
         "boost_clock": 5.4,
         "tdp": 105,
         "performance_score": 88,
+        "gaming_score": 85,
         "price": 29500,
         "supported_ram": [
           "DDR5"
         ],
-        "integrated_graphics": true,
+        "integrated_graphics": false,
         "category": "high-end"
       },
       {
@@ -105,12 +110,605 @@
         "boost_clock": 5.7,
         "tdp": 170,
         "performance_score": 98,
+        "gaming_score": 88,
         "price": 52000,
         "supported_ram": [
           "DDR5"
         ],
-        "integrated_graphics": true,
+        "integrated_graphics": false,
         "category": "enthusiast"
+      },
+      {
+        "id": "cpu_007",
+        "name": "Intel Core i5-12400F",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 2.5,
+        "boost_clock": 4.4,
+        "tdp": 65,
+        "performance_score": 60,
+        "gaming_score": 58,
+        "price": 14500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_008",
+        "name": "AMD Ryzen 9 5950X",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 16,
+        "threads": 32,
+        "base_clock": 3.4,
+        "boost_clock": 4.9,
+        "tdp": 105,
+        "performance_score": 85,
+        "gaming_score": 72,
+        "price": 35000,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": false,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_009",
+        "name": "Intel Core i9-13900K",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 24,
+        "threads": 32,
+        "base_clock": 3.0,
+        "boost_clock": 5.8,
+        "tdp": 253,
+        "performance_score": 99,
+        "gaming_score": 90,
+        "price": 58000,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_010",
+        "name": "Intel Core i9-14900K",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 24,
+        "threads": 32,
+        "base_clock": 3.2,
+        "boost_clock": 6.0,
+        "tdp": 253,
+        "performance_score": 101,
+        "gaming_score": 92,
+        "price": 65000,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_011",
+        "name": "Intel Core i9-14900KS",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 24,
+        "threads": 32,
+        "base_clock": 3.2,
+        "boost_clock": 6.2,
+        "tdp": 253,
+        "performance_score": 102,
+        "gaming_score": 93,
+        "price": 72000,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_012",
+        "name": "AMD Ryzen 5 7600",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 3.8,
+        "boost_clock": 5.1,
+        "tdp": 65,
+        "performance_score": 68,
+        "gaming_score": 72,
+        "price": 15000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "category": "budget"
+      },
+      {
+        "id": "cpu_013",
+        "name": "AMD Ryzen 7 7700",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 3.8,
+        "boost_clock": 5.4,
+        "tdp": 65,
+        "performance_score": 85,
+        "gaming_score": 82,
+        "price": 25000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_014",
+        "name": "AMD Ryzen 7 7800X3D",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 4.2,
+        "boost_clock": 5.0,
+        "tdp": 120,
+        "performance_score": 88,
+        "gaming_score": 105,
+        "price": 35000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_015",
+        "name": "AMD Ryzen 9 7950X3D",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 16,
+        "threads": 32,
+        "base_clock": 4.2,
+        "boost_clock": 5.7,
+        "tdp": 162,
+        "performance_score": 100,
+        "gaming_score": 102,
+        "price": 62000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_016",
+        "name": "Intel Core i7-14700K",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 20,
+        "threads": 28,
+        "base_clock": 3.4,
+        "boost_clock": 5.6,
+        "tdp": 253,
+        "performance_score": 96,
+        "gaming_score": 88,
+        "price": 48000,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_017",
+        "name": "Intel Core i5-14600K",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 14,
+        "threads": 20,
+        "base_clock": 3.5,
+        "boost_clock": 5.3,
+        "tdp": 125,
+        "performance_score": 78,
+        "gaming_score": 76,
+        "price": 22000,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_018",
+        "name": "AMD Ryzen 5 5600X",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 3.7,
+        "boost_clock": 4.6,
+        "tdp": 65,
+        "performance_score": 72,
+        "gaming_score": 68,
+        "price": 14000,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": false,
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_019",
+        "name": "AMD Ryzen 9 5950X",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 16,
+        "threads": 32,
+        "base_clock": 3.4,
+        "boost_clock": 4.9,
+        "tdp": 105,
+        "performance_score": 84,
+        "gaming_score": 70,
+        "price": 32000,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": false,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_020",
+        "name": "AMD Ryzen 7 9800X3D",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 4.7,
+        "boost_clock": 5.2,
+        "tdp": 120,
+        "performance_score": 92,
+        "gaming_score": 115,
+        "price": 52000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_021",
+        "name": "AMD Ryzen 5 9600X",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 3.9,
+        "boost_clock": 5.4,
+        "tdp": 65,
+        "performance_score": 75,
+        "gaming_score": 78,
+        "price": 22000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_022",
+        "name": "AMD Ryzen 7 9700X",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 3.8,
+        "boost_clock": 5.5,
+        "tdp": 65,
+        "performance_score": 86,
+        "gaming_score": 86,
+        "price": 32000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "high-end"
+      },
+      {
+        "id": "cpu_023",
+        "name": "AMD Ryzen 9 9900X",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 12,
+        "threads": 24,
+        "base_clock": 4.4,
+        "boost_clock": 5.6,
+        "tdp": 120,
+        "performance_score": 94,
+        "gaming_score": 90,
+        "price": 48000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_024",
+        "name": "AMD Ryzen 9 9950X",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 16,
+        "threads": 32,
+        "base_clock": 4.3,
+        "boost_clock": 5.7,
+        "tdp": 170,
+        "performance_score": 103,
+        "gaming_score": 92,
+        "price": 62000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
+      },
+      {
+        "id": "apu_001",
+        "name": "AMD Ryzen 3 3200G",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 4,
+        "threads": 4,
+        "base_clock": 3.6,
+        "boost_clock": 4.0,
+        "tdp": 65,
+        "performance_score": 35,
+        "gaming_score": 32,
+        "price": 7500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon Vega 8",
+        "category": "budget"
+      },
+      {
+        "id": "apu_002",
+        "name": "AMD Ryzen 5 3400G",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 4,
+        "threads": 8,
+        "base_clock": 3.7,
+        "boost_clock": 4.2,
+        "tdp": 65,
+        "performance_score": 42,
+        "gaming_score": 40,
+        "price": 9500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon Vega 11",
+        "category": "budget"
+      },
+      {
+        "id": "apu_003",
+        "name": "AMD Ryzen 5 5600G",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 3.9,
+        "boost_clock": 4.4,
+        "tdp": 65,
+        "performance_score": 58,
+        "gaming_score": 55,
+        "price": 12500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon Vega 7",
+        "category": "budget"
+      },
+      {
+        "id": "apu_004",
+        "name": "AMD Ryzen 7 5700G",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 3.8,
+        "boost_clock": 4.6,
+        "tdp": 65,
+        "performance_score": 70,
+        "gaming_score": 62,
+        "price": 17500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon Vega 8",
+        "category": "mid-range"
+      },
+      {
+        "id": "apu_005",
+        "name": "AMD Athlon 3000G",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 2,
+        "threads": 4,
+        "base_clock": 3.5,
+        "boost_clock": 3.5,
+        "tdp": 35,
+        "performance_score": 22,
+        "gaming_score": 18,
+        "price": 4500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon Vega 3",
+        "category": "budget"
+      },
+      {
+        "id": "apu_006",
+        "name": "AMD Ryzen 5 4600G",
+        "brand": "AMD",
+        "socket": "AM4",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 3.7,
+        "boost_clock": 4.2,
+        "tdp": 65,
+        "performance_score": 52,
+        "gaming_score": 48,
+        "price": 10500,
+        "supported_ram": [
+          "DDR4"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon Vega 7",
+        "category": "budget"
+      },
+      {
+        "id": "apu_007",
+        "name": "AMD Ryzen 5 8600G",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 4.3,
+        "boost_clock": 5.0,
+        "tdp": 65,
+        "performance_score": 72,
+        "gaming_score": 68,
+        "price": 22000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon 760M",
+        "category": "mid-range"
+      },
+      {
+        "id": "apu_008",
+        "name": "AMD Ryzen 7 8700G",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 8,
+        "threads": 16,
+        "base_clock": 4.2,
+        "boost_clock": 5.1,
+        "tdp": 65,
+        "performance_score": 78,
+        "gaming_score": 74,
+        "price": 28000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Radeon 780M",
+        "category": "mid-range"
+      },
+      {
+        "id": "cpu_025",
+        "name": "Intel Core i3-12100",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 4,
+        "threads": 8,
+        "base_clock": 3.3,
+        "boost_clock": 4.3,
+        "tdp": 60,
+        "performance_score": 45,
+        "gaming_score": 40,
+        "price": 10500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Intel UHD 730",
+        "category": "budget"
+      },
+      {
+        "id": "cpu_026",
+        "name": "Intel Core i3-13100",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 4,
+        "threads": 8,
+        "base_clock": 3.4,
+        "boost_clock": 4.5,
+        "tdp": 60,
+        "performance_score": 48,
+        "gaming_score": 44,
+        "price": 12500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Intel UHD 730",
+        "category": "budget"
+      },
+      {
+        "id": "cpu_027",
+        "name": "Intel Core i5-12400",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 6,
+        "threads": 12,
+        "base_clock": 2.5,
+        "boost_clock": 4.4,
+        "tdp": 65,
+        "performance_score": 60,
+        "gaming_score": 56,
+        "price": 16000,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Intel UHD 730",
+        "category": "budget"
+      },
+      {
+        "id": "cpu_028",
+        "name": "Intel Core i5-13400",
+        "brand": "Intel",
+        "socket": "LGA1700",
+        "cores": 10,
+        "threads": 16,
+        "base_clock": 2.5,
+        "boost_clock": 4.6,
+        "tdp": 65,
+        "performance_score": 72,
+        "gaming_score": 66,
+        "price": 19500,
+        "supported_ram": [
+          "DDR4",
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Intel UHD 770",
+        "category": "mid-range"
       }
     ],
     "motherboards": [
@@ -215,92 +813,526 @@
         "pcie_slots": 2,
         "price": 32000,
         "performance_score": 90
+      },
+      {
+        "id": "mb_007",
+        "name": "ASUS Pro B660M-C D4",
+        "brand": "ASUS",
+        "socket": "LGA1700",
+        "chipset": "B660",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "ram_slots": 2,
+        "max_ram_speed": 4800,
+        "m2_slots": 1,
+        "pcie_slots": 1,
+        "price": 9500,
+        "performance_score": 50
+      },
+      {
+        "id": "mb_008",
+        "name": "Gigabyte X670E AORUS Master",
+        "brand": "Gigabyte",
+        "socket": "AM5",
+        "chipset": "X670E",
+        "form_factor": "E-ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 6400,
+        "m2_slots": 5,
+        "pcie_slots": 3,
+        "price": 39500,
+        "performance_score": 92
+      },
+      {
+        "id": "mb_009",
+        "name": "ASRock X870E Phantom Gaming",
+        "brand": "ASRock",
+        "socket": "AM5",
+        "chipset": "X870E",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 7000,
+        "m2_slots": 4,
+        "pcie_slots": 2,
+        "price": 41000,
+        "performance_score": 95
+      },
+      {
+        "id": "mb_010",
+        "name": "ASUS ROG Strix Z790-E Gaming WiFi",
+        "brand": "ASUS",
+        "socket": "LGA1700",
+        "chipset": "Z790",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 7200,
+        "m2_slots": 4,
+        "pcie_slots": 3,
+        "price": 38000,
+        "performance_score": 93
+      },
+      {
+        "id": "mb_011",
+        "name": "MSI MEG Z690 Godlike",
+        "brand": "MSI",
+        "socket": "LGA1700",
+        "chipset": "Z690",
+        "form_factor": "E-ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 7200,
+        "m2_slots": 4,
+        "pcie_slots": 4,
+        "price": 52000,
+        "performance_score": 98
+      },
+      {
+        "id": "mb_012",
+        "name": "Gigabyte B650 AORUS Elite AX",
+        "brand": "Gigabyte",
+        "socket": "AM5",
+        "chipset": "B650",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 6400,
+        "m2_slots": 3,
+        "pcie_slots": 2,
+        "price": 24000,
+        "performance_score": 82
+      },
+      {
+        "id": "mb_013",
+        "name": "ASRock B850M Pro RS",
+        "brand": "ASRock",
+        "socket": "AM5",
+        "chipset": "B850",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 2,
+        "max_ram_speed": 6400,
+        "m2_slots": 2,
+        "pcie_slots": 1,
+        "price": 14500,
+        "performance_score": 72
+      },
+      {
+        "id": "mb_014",
+        "name": "ASUS Prime H770-PLUS D4",
+        "brand": "ASUS",
+        "socket": "LGA1700",
+        "chipset": "H770",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 5200,
+        "m2_slots": 2,
+        "pcie_slots": 2,
+        "price": 12000,
+        "performance_score": 60
+      },
+      {
+        "id": "mb_015",
+        "name": "MSI MAG B550 Tomahawk",
+        "brand": "MSI",
+        "socket": "AM4",
+        "chipset": "B550",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 5200,
+        "m2_slots": 2,
+        "pcie_slots": 2,
+        "price": 12500,
+        "performance_score": 68
+      },
+      {
+        "id": "mb_016",
+        "name": "EVGA Z690 Dark K3",
+        "brand": "EVGA",
+        "socket": "LGA1700",
+        "chipset": "Z690",
+        "form_factor": "ATX",
+        "supported_ram": [
+          "DDR5"
+        ],
+        "ram_slots": 4,
+        "max_ram_speed": 7200,
+        "m2_slots": 3,
+        "pcie_slots": 2,
+        "price": 36000,
+        "performance_score": 92
+      },
+      {
+        "id": "mb_am4_001",
+        "name": "Gigabyte B450M DS3H V2",
+        "brand": "Gigabyte",
+        "socket": "AM4",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "max_ram": 64,
+        "ram_slots": 2,
+        "m2_slots": 1,
+        "sata_ports": 4,
+        "pcie_x16_slots": 1,
+        "performance_score": 50,
+        "price": 5500,
+        "category": "budget"
+      },
+      {
+        "id": "mb_am4_002",
+        "name": "MSI A520M-A PRO",
+        "brand": "MSI",
+        "socket": "AM4",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "max_ram": 64,
+        "ram_slots": 2,
+        "m2_slots": 1,
+        "sata_ports": 4,
+        "pcie_x16_slots": 1,
+        "performance_score": 48,
+        "price": 4800,
+        "category": "budget"
+      },
+      {
+        "id": "mb_am4_003",
+        "name": "ASRock B450M Pro4-F",
+        "brand": "ASRock",
+        "socket": "AM4",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "max_ram": 64,
+        "ram_slots": 4,
+        "m2_slots": 1,
+        "sata_ports": 4,
+        "pcie_x16_slots": 1,
+        "performance_score": 52,
+        "price": 6200,
+        "category": "budget"
+      },
+      {
+        "id": "mb_am4_004",
+        "name": "Gigabyte B550M DS3H",
+        "brand": "Gigabyte",
+        "socket": "AM4",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "max_ram": 128,
+        "ram_slots": 4,
+        "m2_slots": 2,
+        "sata_ports": 4,
+        "pcie_x16_slots": 1,
+        "performance_score": 58,
+        "price": 7500,
+        "category": "budget"
+      },
+      {
+        "id": "mb_am4_005",
+        "name": "ASUS Prime A320M-K",
+        "brand": "ASUS",
+        "socket": "AM4",
+        "form_factor": "Micro-ATX",
+        "supported_ram": [
+          "DDR4"
+        ],
+        "max_ram": 32,
+        "ram_slots": 2,
+        "m2_slots": 1,
+        "sata_ports": 4,
+        "pcie_x16_slots": 1,
+        "performance_score": 45,
+        "price": 4200,
+        "category": "budget"
       }
     ],
     "gpus": [
       {
         "id": "gpu_001",
-        "name": "NVIDIA GeForce RTX 4060",
+        "name": "NVIDIA GeForce RTX 5090",
         "brand": "NVIDIA",
-        "vram": 8,
-        "vram_type": "GDDR6",
-        "tdp": 115,
-        "length_mm": 240,
-        "performance_score": 70,
-        "price": 28000,
-        "category": "mid-range",
+        "vram": 32,
+        "vram_type": "GDDR7",
+        "tdp": 575,
+        "length_mm": 420,
+        "performance_score": 102,
+        "price": 285000,
+        "category": "enthusiast",
         "ray_tracing": true,
-        "dlss_version": 3
+        "dlss_version": 4,
+        "architecture": "Blackwell"
       },
       {
         "id": "gpu_002",
-        "name": "NVIDIA GeForce RTX 4070 Super",
+        "name": "NVIDIA GeForce RTX 5080",
         "brand": "NVIDIA",
-        "vram": 12,
-        "vram_type": "GDDR6X",
-        "tdp": 220,
-        "length_mm": 300,
-        "performance_score": 88,
-        "price": 52000,
-        "category": "high-end",
+        "vram": 16,
+        "vram_type": "GDDR7",
+        "tdp": 320,
+        "length_mm": 380,
+        "performance_score": 98,
+        "price": 165000,
+        "category": "enthusiast",
         "ray_tracing": true,
-        "dlss_version": 3
+        "dlss_version": 4,
+        "architecture": "Blackwell"
       },
       {
         "id": "gpu_003",
+        "name": "NVIDIA GeForce RTX 5070 Ti",
+        "brand": "NVIDIA",
+        "vram": 12,
+        "vram_type": "GDDR7",
+        "tdp": 300,
+        "length_mm": 360,
+        "performance_score": 94,
+        "price": 95000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "dlss_version": 4,
+        "architecture": "Blackwell"
+      },
+      {
+        "id": "gpu_004",
+        "name": "NVIDIA GeForce RTX 5070",
+        "brand": "NVIDIA",
+        "vram": 12,
+        "vram_type": "GDDR7",
+        "tdp": 250,
+        "length_mm": 340,
+        "performance_score": 88,
+        "price": 65000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "dlss_version": 4,
+        "architecture": "Blackwell"
+      },
+      {
+        "id": "gpu_005",
+        "name": "NVIDIA GeForce RTX 5060 Ti",
+        "brand": "NVIDIA",
+        "vram": 8,
+        "vram_type": "GDDR6",
+        "tdp": 180,
+        "length_mm": 280,
+        "performance_score": 78,
+        "price": 42000,
+        "category": "mid-range",
+        "ray_tracing": true,
+        "dlss_version": 4,
+        "architecture": "Blackwell"
+      },
+      {
+        "id": "gpu_006",
+        "name": "NVIDIA GeForce RTX 5060",
+        "brand": "NVIDIA",
+        "vram": 8,
+        "vram_type": "GDDR6",
+        "tdp": 165,
+        "length_mm": 260,
+        "performance_score": 72,
+        "price": 32000,
+        "category": "mid-range",
+        "ray_tracing": true,
+        "dlss_version": 4,
+        "architecture": "Blackwell"
+      },
+      {
+        "id": "gpu_007",
         "name": "NVIDIA GeForce RTX 4080 Super",
         "brand": "NVIDIA",
         "vram": 16,
         "vram_type": "GDDR6X",
         "tdp": 320,
         "length_mm": 336,
-        "performance_score": 95,
-        "price": 98000,
-        "category": "enthusiast",
+        "performance_score": 91,
+        "price": 85000,
+        "category": "high-end",
         "ray_tracing": true,
         "dlss_version": 3
       },
       {
-        "id": "gpu_004",
-        "name": "AMD Radeon RX 7600",
-        "brand": "AMD",
+        "id": "gpu_008",
+        "name": "NVIDIA GeForce RTX 4070 Super",
+        "brand": "NVIDIA",
+        "vram": 12,
+        "vram_type": "GDDR6X",
+        "tdp": 220,
+        "length_mm": 300,
+        "performance_score": 82,
+        "price": 48000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_009",
+        "name": "NVIDIA GeForce RTX 4070",
+        "brand": "NVIDIA",
+        "vram": 12,
+        "vram_type": "GDDR6",
+        "tdp": 200,
+        "length_mm": 290,
+        "performance_score": 80,
+        "price": 42000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_010",
+        "name": "NVIDIA GeForce RTX 4060 Ti",
+        "brand": "NVIDIA",
         "vram": 8,
         "vram_type": "GDDR6",
-        "tdp": 165,
-        "length_mm": 260,
-        "performance_score": 65,
-        "price": 24500,
+        "tdp": 130,
+        "length_mm": 240,
+        "performance_score": 68,
+        "price": 28000,
         "category": "mid-range",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_011",
+        "name": "AMD Radeon RX 7900 XTX",
+        "brand": "AMD",
+        "vram": 24,
+        "vram_type": "GDDR6",
+        "tdp": 455,
+        "length_mm": 360,
+        "performance_score": 93,
+        "price": 82000,
+        "category": "enthusiast",
         "ray_tracing": true,
         "fsr_version": 3
       },
       {
-        "id": "gpu_005",
+        "id": "gpu_012",
+        "name": "AMD Radeon RX 7900 XT",
+        "brand": "AMD",
+        "vram": 20,
+        "vram_type": "GDDR6",
+        "tdp": 420,
+        "length_mm": 340,
+        "performance_score": 89,
+        "price": 68000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "fsr_version": 3
+      },
+      {
+        "id": "gpu_013",
         "name": "AMD Radeon RX 7800 XT",
         "brand": "AMD",
         "vram": 16,
         "vram_type": "GDDR6",
         "tdp": 263,
         "length_mm": 320,
-        "performance_score": 85,
-        "price": 46000,
+        "performance_score": 84,
+        "price": 45000,
         "category": "high-end",
         "ray_tracing": true,
         "fsr_version": 3
       },
       {
-        "id": "gpu_006",
-        "name": "NVIDIA GeForce GTX 1650",
+        "id": "gpu_014",
+        "name": "AMD Radeon RX 7700 XT",
+        "brand": "AMD",
+        "vram": 12,
+        "vram_type": "GDDR6",
+        "tdp": 250,
+        "length_mm": 300,
+        "performance_score": 76,
+        "price": 35000,
+        "category": "mid-range",
+        "ray_tracing": true,
+        "fsr_version": 3
+      },
+      {
+        "id": "gpu_015",
+        "name": "AMD Radeon RX 7600",
+        "brand": "AMD",
+        "vram": 8,
+        "vram_type": "GDDR6",
+        "tdp": 165,
+        "length_mm": 260,
+        "performance_score": 62,
+        "price": 22000,
+        "category": "budget",
+        "ray_tracing": true,
+        "fsr_version": 3
+      },
+      {
+        "id": "gpu_016",
+        "name": "NVIDIA GeForce GTX 1650 Super",
         "brand": "NVIDIA",
         "vram": 4,
         "vram_type": "GDDR6",
-        "tdp": 75,
-        "length_mm": 200,
-        "performance_score": 35,
-        "price": 12500,
+        "tdp": 100,
+        "length_mm": 210,
+        "performance_score": 45,
+        "price": 15000,
         "category": "budget",
         "ray_tracing": false,
         "dlss_version": null
+      },
+      {
+        "id": "gpu_017",
+        "name": "Intel Arc A770 16GB",
+        "brand": "Intel",
+        "vram": 16,
+        "vram_type": "GDDR6",
+        "tdp": 225,
+        "length_mm": 270,
+        "performance_score": 75,
+        "price": 38000,
+        "category": "mid-range",
+        "ray_tracing": true,
+        "xess_version": 1
+      },
+      {
+        "id": "gpu_018",
+        "name": "Intel Arc A750",
+        "brand": "Intel",
+        "vram": 8,
+        "vram_type": "GDDR6",
+        "tdp": 130,
+        "length_mm": 210,
+        "performance_score": 58,
+        "price": 24000,
+        "category": "budget",
+        "ray_tracing": true,
+        "xess_version": 1
       }
     ],
     "ram": [
@@ -363,6 +1395,138 @@
         "latency": "CL32",
         "price": 18000,
         "performance_score": 92
+      },
+      {
+        "id": "ram_006",
+        "name": "Kingston Fury Renegade 32GB (2x16GB) DDR5-7200",
+        "brand": "Kingston",
+        "type": "DDR5",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 7200,
+        "latency": "CL34",
+        "price": 12000,
+        "performance_score": 88
+      },
+      {
+        "id": "ram_007",
+        "name": "Corsair Vengeance 16GB (1x16GB) DDR4-3200",
+        "brand": "Corsair",
+        "type": "DDR4",
+        "capacity_gb": 16,
+        "sticks": 1,
+        "speed_mhz": 3200,
+        "latency": "CL16",
+        "price": 2800,
+        "performance_score": 50
+      },
+      {
+        "id": "ram_008",
+        "name": "G.Skill Flare X5 128GB (2x64GB) DDR5-6000",
+        "brand": "G.Skill",
+        "type": "DDR5",
+        "capacity_gb": 128,
+        "sticks": 2,
+        "speed_mhz": 6000,
+        "latency": "CL30",
+        "price": 35000,
+        "performance_score": 96
+      },
+      {
+        "id": "ram_009",
+        "name": "Corsair Dominator Platinum 32GB (2x16GB) DDR5-5600",
+        "brand": "Corsair",
+        "type": "DDR5",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 5600,
+        "latency": "CL36",
+        "price": 8200,
+        "performance_score": 74
+      },
+      {
+        "id": "ram_010",
+        "name": "Kingston Fury Beast 16GB (2x8GB) DDR4-3200",
+        "brand": "Kingston",
+        "type": "DDR4",
+        "capacity_gb": 16,
+        "sticks": 2,
+        "speed_mhz": 3200,
+        "latency": "CL16",
+        "price": 2600,
+        "performance_score": 52
+      },
+      {
+        "id": "ram_011",
+        "name": "ADATA XPG Lancer RGB 32GB (2x16GB) DDR5-7200",
+        "brand": "ADATA",
+        "type": "DDR5",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 7200,
+        "latency": "CL34",
+        "price": 13500,
+        "performance_score": 90
+      },
+      {
+        "id": "ram_012",
+        "name": "Patriot Viper Steel 16GB (1x16GB) DDR4-3600",
+        "brand": "Patriot",
+        "type": "DDR4",
+        "capacity_gb": 16,
+        "sticks": 1,
+        "speed_mhz": 3600,
+        "latency": "CL18",
+        "price": 2800,
+        "performance_score": 58
+      },
+      {
+        "id": "ram_013",
+        "name": "SK Hynix Predator 32GB (2x16GB) DDR5-6400",
+        "brand": "SK Hynix",
+        "type": "DDR5",
+        "capacity_gb": 32,
+        "sticks": 2,
+        "speed_mhz": 6400,
+        "latency": "CL32",
+        "price": 11800,
+        "performance_score": 87
+      },
+      {
+        "id": "ram_014",
+        "name": "Micron Crucial 64GB (2x32GB) DDR5-5600",
+        "brand": "Crucial",
+        "type": "DDR5",
+        "capacity_gb": 64,
+        "sticks": 2,
+        "speed_mhz": 5600,
+        "latency": "CL36",
+        "price": 19500,
+        "performance_score": 88
+      },
+      {
+        "id": "ram_015",
+        "name": "G.Skill Trident Z 16GB (2x8GB) DDR4-3600",
+        "brand": "G.Skill",
+        "type": "DDR4",
+        "capacity_gb": 16,
+        "sticks": 2,
+        "speed_mhz": 3600,
+        "latency": "CL17",
+        "price": 3100,
+        "performance_score": 61
+      },
+      {
+        "id": "ram_016",
+        "name": "Corsair Vengeance LPX 64GB (2x32GB) DDR5-6000",
+        "brand": "Corsair",
+        "type": "DDR5",
+        "capacity_gb": 64,
+        "sticks": 2,
+        "speed_mhz": 6000,
+        "latency": "CL30",
+        "price": 16500,
+        "performance_score": 91
       }
     ],
     "psus": [
@@ -415,6 +1579,106 @@
         "modular": true,
         "price": 8500,
         "performance_score": 75
+      },
+      {
+        "id": "psu_006",
+        "name": "Corsair HX1200i 1200W 80+ Platinum",
+        "brand": "Corsair",
+        "wattage": 1200,
+        "efficiency": "80+ Platinum",
+        "modular": true,
+        "price": 18000,
+        "performance_score": 95
+      },
+      {
+        "id": "psu_007",
+        "name": "be quiet! Pure Power 12M 600W 80+ Gold",
+        "brand": "be quiet!",
+        "wattage": 600,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 7000,
+        "performance_score": 70
+      },
+      {
+        "id": "psu_008",
+        "name": "Thermaltake Toughpower GF1 850W 80+ Gold",
+        "brand": "Thermaltake",
+        "wattage": 850,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 10000,
+        "performance_score": 80
+      },
+      {
+        "id": "psu_009",
+        "name": "ASUS ROG Strix 1200W 80+ Platinum",
+        "brand": "ASUS",
+        "wattage": 1200,
+        "efficiency": "80+ Platinum",
+        "modular": true,
+        "price": 22000,
+        "performance_score": 96
+      },
+      {
+        "id": "psu_010",
+        "name": "Gigabyte P850GM 850W 80+ Gold",
+        "brand": "Gigabyte",
+        "wattage": 850,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 9500,
+        "performance_score": 78
+      },
+      {
+        "id": "psu_011",
+        "name": "Seasonic Prime Ultra 750W 80+ Gold",
+        "brand": "Seasonic",
+        "wattage": 750,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 8000,
+        "performance_score": 77
+      },
+      {
+        "id": "psu_012",
+        "name": "Corsair RM1000x 1000W 80+ Gold",
+        "brand": "Corsair",
+        "wattage": 1000,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 12500,
+        "performance_score": 88
+      },
+      {
+        "id": "psu_013",
+        "name": "MSI MPG A850G 850W 80+ Gold",
+        "brand": "MSI",
+        "wattage": 850,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 9800,
+        "performance_score": 79
+      },
+      {
+        "id": "psu_014",
+        "name": "Antec Signature 650W 80+ Bronze",
+        "brand": "Antec",
+        "wattage": 650,
+        "efficiency": "80+ Bronze",
+        "modular": false,
+        "price": 4800,
+        "performance_score": 48
+      },
+      {
+        "id": "psu_015",
+        "name": "Fractal Design ION Gold 850W 80+ Gold",
+        "brand": "Fractal Design",
+        "wattage": 850,
+        "efficiency": "80+ Gold",
+        "modular": true,
+        "price": 10200,
+        "performance_score": 81
       }
     ],
     "cases": [
@@ -472,6 +1736,140 @@
         "cpu_cooler_height_mm": 167,
         "price": 14500,
         "performance_score": 88
+      },
+      {
+        "id": "case_005",
+        "name": "Phanteks Eclipse P500A D-RGB",
+        "brand": "Phanteks",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 440,
+        "cpu_cooler_height_mm": 180,
+        "price": 12500,
+        "performance_score": 82
+      },
+      {
+        "id": "case_006",
+        "name": "Fractal Design North",
+        "brand": "Fractal Design",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX"
+        ],
+        "gpu_clearance_mm": 350,
+        "cpu_cooler_height_mm": 145,
+        "price": 9000,
+        "performance_score": 76
+      },
+      {
+        "id": "case_007",
+        "name": "Hian Li A4-H2O",
+        "brand": "Lian Li",
+        "form_factor": [
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 290,
+        "cpu_cooler_height_mm": 120,
+        "price": 11500,
+        "performance_score": 72
+      },
+      {
+        "id": "case_008",
+        "name": "Cooler Master HAF 700 EVO",
+        "brand": "Cooler Master",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 450,
+        "cpu_cooler_height_mm": 200,
+        "price": 18500,
+        "performance_score": 91
+      },
+      {
+        "id": "case_009",
+        "name": "Corsair 5000T RGB",
+        "brand": "Corsair",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 470,
+        "cpu_cooler_height_mm": 210,
+        "price": 32000,
+        "performance_score": 96
+      },
+      {
+        "id": "case_010",
+        "name": "Lian Li O11 Dynamic XL",
+        "brand": "Lian Li",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 430,
+        "cpu_cooler_height_mm": 180,
+        "price": 16500,
+        "performance_score": 89
+      },
+      {
+        "id": "case_011",
+        "name": "Thermaltake The Tower 900",
+        "brand": "Thermaltake",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX"
+        ],
+        "gpu_clearance_mm": 500,
+        "cpu_cooler_height_mm": 220,
+        "price": 22000,
+        "performance_score": 94
+      },
+      {
+        "id": "case_012",
+        "name": "Corsair Obsidian 500D",
+        "brand": "Corsair",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX"
+        ],
+        "gpu_clearance_mm": 370,
+        "cpu_cooler_height_mm": 160,
+        "price": 8000,
+        "performance_score": 73
+      },
+      {
+        "id": "case_013",
+        "name": "NZXT Kraken Elite 360",
+        "brand": "NZXT",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX",
+          "Mini-ITX"
+        ],
+        "gpu_clearance_mm": 400,
+        "cpu_cooler_height_mm": 190,
+        "price": 28000,
+        "performance_score": 92
+      },
+      {
+        "id": "case_014",
+        "name": "Fractal Design Torrent RGB",
+        "brand": "Fractal Design",
+        "form_factor": [
+          "ATX",
+          "Micro-ATX"
+        ],
+        "gpu_clearance_mm": 460,
+        "cpu_cooler_height_mm": 205,
+        "price": 24500,
+        "performance_score": 90
       }
     ],
     "storage": [
@@ -518,6 +1916,171 @@
         "write_speed": 4200,
         "price": 9000,
         "performance_score": 78
+      },
+      {
+        "id": "storage_005",
+        "name": "SK Hynix Platinum P41 1TB NVMe",
+        "brand": "SK Hynix",
+        "type": "NVMe",
+        "capacity_gb": 1000,
+        "read_speed": 7100,
+        "write_speed": 6000,
+        "price": 8500,
+        "performance_score": 88
+      },
+      {
+        "id": "storage_006",
+        "name": "Seagate Barracuda 4TB HDD",
+        "brand": "Seagate",
+        "type": "HDD",
+        "capacity_gb": 4000,
+        "read_speed": 180,
+        "write_speed": 180,
+        "price": 6500,
+        "performance_score": 35
+      },
+      {
+        "id": "storage_007",
+        "name": "Sabrent Rocket 4 Plus 2TB NVMe",
+        "brand": "Sabrent",
+        "type": "NVMe",
+        "capacity_gb": 2000,
+        "read_speed": 7000,
+        "write_speed": 6500,
+        "price": 12000,
+        "performance_score": 85
+      },
+      {
+        "id": "storage_008",
+        "name": "Samsung 870 QVO 1TB SSD",
+        "brand": "Samsung",
+        "type": "2.5\" SSD",
+        "capacity_gb": 1000,
+        "read_speed": 560,
+        "write_speed": 530,
+        "price": 4500,
+        "performance_score": 42
+      },
+      {
+        "id": "storage_009",
+        "name": "Kingston A3000 1TB NVMe",
+        "brand": "Kingston",
+        "type": "NVMe",
+        "capacity_gb": 1000,
+        "read_speed": 3500,
+        "write_speed": 2500,
+        "price": 5000,
+        "performance_score": 65
+      },
+      {
+        "id": "storage_010",
+        "name": "WD Black SN850X 2TB NVMe",
+        "brand": "Western Digital",
+        "type": "NVMe",
+        "capacity_gb": 2000,
+        "read_speed": 7100,
+        "write_speed": 5100,
+        "price": 11500,
+        "performance_score": 89
+      },
+      {
+        "id": "storage_011",
+        "name": "Corsair MP600 GHz 4TB NVMe",
+        "brand": "Corsair",
+        "type": "NVMe",
+        "capacity_gb": 4000,
+        "read_speed": 4950,
+        "write_speed": 3950,
+        "price": 18000,
+        "performance_score": 82
+      },
+      {
+        "id": "storage_012",
+        "name": "Crucial BX500 2TB 2.5\" SSD",
+        "brand": "Crucial",
+        "type": "2.5\" SSD",
+        "capacity_gb": 2000,
+        "read_speed": 540,
+        "write_speed": 500,
+        "price": 8500,
+        "performance_score": 40
+      },
+      {
+        "id": "storage_013",
+        "name": "Seagate BarraCuda Pro 8TB HDD",
+        "brand": "Seagate",
+        "type": "HDD",
+        "capacity_gb": 8000,
+        "read_speed": 272,
+        "write_speed": 272,
+        "price": 12000,
+        "performance_score": 32
+      },
+      {
+        "id": "storage_014",
+        "name": "Samsung 980 Pro 2TB NVMe",
+        "brand": "Samsung",
+        "type": "NVMe",
+        "capacity_gb": 2000,
+        "read_speed": 7400,
+        "write_speed": 6300,
+        "price": 14000,
+        "performance_score": 93
+      },
+      {
+        "id": "storage_015",
+        "name": "Intel Optane 905P 480GB",
+        "brand": "Intel",
+        "type": "NVMe",
+        "capacity_gb": 480,
+        "read_speed": 5500,
+        "write_speed": 4500,
+        "price": 22000,
+        "performance_score": 98
+      },
+      {
+        "id": "storage_016",
+        "name": "ADATA XPG SX8200 Pro 2TB",
+        "brand": "ADATA",
+        "type": "NVMe",
+        "capacity_gb": 2000,
+        "read_speed": 3500,
+        "write_speed": 3000,
+        "price": 9500,
+        "performance_score": 80
+      },
+      {
+        "id": "storage_017",
+        "name": "Sabrent Rocket XTRM-Q 1TB Portable NVMe",
+        "brand": "Sabrent",
+        "type": "Portable NVMe",
+        "capacity_gb": 1000,
+        "read_speed": 1400,
+        "write_speed": 1000,
+        "price": 8000,
+        "performance_score": 68
+      },
+      {
+        "id": "storage_018",
+        "name": "WD Blue 3D 4TB SSD",
+        "brand": "Western Digital",
+        "type": "2.5\" SSD",
+        "capacity_gb": 4000,
+        "read_speed": 560,
+        "write_speed": 500,
+        "price": 15000,
+        "performance_score": 38
+      },
+      {
+        "id": "storage_019",
+        "name": "Samsung 990 EVO 2TB NVMe",
+        "brand": "Samsung",
+        "type": "NVMe",
+        "capacity_gb": 2000,
+        "read_speed": 5000,
+        "write_speed": 4200,
+        "price": 10500,
+        "performance_score": 84
       }
     ]
   },
@@ -610,6 +2173,12 @@
       "min": 120000,
       "max": 200000,
       "description": "4K gaming and heavy workloads"
+    },
+    "ultra_premium": {
+      "name": "Ultra Premium",
+      "min": 200000,
+      "max": 500000,
+      "description": "Extreme 4K and beyond with top-tier components"
     }
   }
 }
