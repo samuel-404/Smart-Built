@@ -24,6 +24,7 @@ const Icons = {
   sparkle: () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>),
   swap: () => (<svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" /></svg>),
   close: () => (<svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>),
+  refresh: () => (<svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>),
   intel: () => (<svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M20.42 7.345v9.18h1.651v-9.18zM0 7.475v1.737h1.737V7.474zm9.78.352v6.053c0 .513.044.945.13 1.292.087.34.235.618.44.828.203.21.475.359.803.451.334.093.754.136 1.255.136h.216v-1.533c-.24 0-.445-.012-.593-.037a.672.672 0 0 1-.39-.173.693.693 0 0 1-.173-.377 4.002 4.002 0 0 1-.037-.606v-2.182h1.193v-1.416h-1.193V7.827zm-3.505 2.312c-.396 0-.76.08-1.082.241-.327.161-.6.384-.822.668l-.087.117v-.902H2.658v6.256h1.639v-3.214c.018-.588.16-1.02.433-1.299.29-.297.642-.445 1.044-.445.476 0 .841.149 1.082.433.235.284.359.686.359 1.2v3.324h1.663V12.97c.006-.89-.229-1.595-.686-2.09-.458-.495-1.1-.742-1.917-.742zm10.065.006a3.252 3.252 0 0 0-2.306.946c-.29.29-.525.637-.692 1.033a3.145 3.145 0 0 0-.254 1.273c0 .452.08.878.241 1.274.161.395.39.742.674 1.032.284.29.637.526 1.045.693.408.173.86.26 1.342.26 1.397 0 2.262-.637 2.782-1.23l-1.187-.904c-.248.297-.841.699-1.583.699-.464 0-.847-.105-1.138-.321a1.588 1.588 0 0 1-.593-.872l-.019-.056h4.915v-.587c0-.451-.08-.872-.235-1.267a3.393 3.393 0 0 0-.661-1.033 3.013 3.013 0 0 0-1.02-.692 3.345 3.345 0 0 0-1.311-.248zm-16.297.118v6.256h1.651v-6.256zm16.278 1.286c1.132 0 1.664.797 1.664 1.255l-3.32.006c0-.458.525-1.255 1.656-1.261zm7.073 3.814a.606.606 0 0 0-.606.606.606.606 0 0 0 .606.606.606.606 0 0 0 .606-.606.606.606 0 0 0-.606-.606zm-.008.105a.5.5 0 0 1 .002 0 .5.5 0 0 1 .5.501.5.5 0 0 1-.5.5.5.5 0 0 1-.5-.5.5.5 0 0 1 .498-.5zm-.233.155v.699h.13v-.285h.093l.173.285h.136l-.18-.297a.191.191 0 0 0 .118-.056c.03-.03.05-.074.05-.136 0-.068-.02-.117-.063-.154-.037-.038-.105-.056-.185-.056zm.13.099h.154c.019 0 .037.006.056.012a.064.064 0 0 1 .037.031c.013.013.012.031.012.056a.124.124 0 0 1-.012.055.164.164 0 0 1-.037.031c-.019.006-.037.013-.056.013h-.154Z" /></svg>),
   amd: () => (<svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24"><path d="M18.324 9.137l1.559 1.56h2.556v2.557L24 14.814V9.137zM2 9.52l-2 4.96h1.309l.37-.982H3.9l.408.982h1.338L3.432 9.52zm4.209 0v4.955h1.238v-3.092l1.338 1.562h.188l1.338-1.556v3.091h1.238V9.52H10.47l-1.592 1.845L7.287 9.52zm6.283 0v4.96h2.057c1.979 0 2.88-1.046 2.88-2.472 0-1.36-.937-2.488-2.747-2.488zm1.237.91h.792c1.17 0 1.63.711 1.63 1.57 0 .728-.372 1.572-1.616 1.572h-.806zm-10.985.273l.791 1.932H2.008zm17.137.307l-1.604 1.603v2.25h2.246l1.604-1.607h-2.246z" /></svg>),
 };
@@ -367,10 +368,11 @@ const LoadingStep = () => {
 };
 
 // ─── Build Card (Airy List Rows with GSAP) ───────────────────
-const BuildCard = ({ build, index, onSwapComponent }) => {
+const BuildCard = ({ build, index, onSwapComponent, onUpdatePrice }) => {
   const [swapType, setSwapType] = useState(null);
   const [alternatives, setAlternatives] = useState([]);
   const [swapLoading, setSwapLoading] = useState(false);
+  const [priceLoading, setPriceLoading] = useState(null);
   const rowsRef = useRef(null);
   const compOrder = ['cpu', 'gpu', 'motherboard', 'ram', 'storage', 'psu', 'case'];
   const API_URL = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? '' : 'http://localhost:5000');
@@ -393,6 +395,18 @@ const BuildCard = ({ build, index, onSwapComponent }) => {
       const d = await r.json();
       if (d.success) setAlternatives(d.alternatives);
     } catch (e) { console.error(e); } finally { setSwapLoading(false); }
+  };
+
+  const checkLivePrice = async (ct, compId) => {
+    if (!compId) return;
+    setPriceLoading(ct);
+    try {
+      const r = await fetch(`${API_URL}/api/prices/update-live`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ component_id: compId }) });
+      const d = await r.json();
+      if (d.success && d.new_price) {
+        if (onUpdatePrice) onUpdatePrice(index, ct, d.new_price);
+      }
+    } catch (e) { console.error(e); } finally { setPriceLoading(null); }
   };
 
   const selectAlt = (ct, comp) => { onSwapComponent(index, ct, comp); setSwapType(null); setAlternatives([]); };
@@ -448,12 +462,15 @@ const BuildCard = ({ build, index, onSwapComponent }) => {
                   {comp.brand && <span className="text-[10px]" style={{ color: '#D2D2D7' }}>{comp.brand}</span>}
                 </div>
                 <div className="text-sm font-bold mr-6 flex-shrink-0" style={{ color: '#1D1D1F' }}>{formatPrice(comp.price)}</div>
-                <div className="flex items-center gap-3 flex-shrink-0">
-                  <div className="dot-ok" />
-                  <button onClick={() => fetchAlts(ct)} className="text-xs font-medium transition-colors"
-                    style={{ color: isSwapping ? '#0071E3' : '#86868B' }}
-                    onMouseEnter={e => e.currentTarget.style.color = '#0071E3'}
-                    onMouseLeave={e => { if (!isSwapping) e.currentTarget.style.color = '#86868B'; }}>
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  <div className="dot-ok mr-2" />
+                  <button onClick={() => checkLivePrice(ct, comp.id)} disabled={priceLoading === ct} className="flex items-center gap-1 text-[11px] font-medium transition-colors px-2 py-1 rounded-md"
+                    style={{ color: priceLoading === ct ? '#86868B' : (isSwapping ? '#86868B' : '#0071E3'), background: 'rgba(0,113,227,0.05)' }}>
+                    {priceLoading === ct ? <div className="w-3 h-3 rounded-full animate-spin" style={{ border: '1.5px solid #E8E8ED', borderTopColor: '#0071E3' }} /> : <Icons.refresh />}
+                    Live
+                  </button>
+                  <button onClick={() => fetchAlts(ct)} className="text-[11px] font-medium transition-colors px-2 py-1 rounded-md"
+                    style={{ color: isSwapping ? '#fff' : '#86868B', background: isSwapping ? '#0071E3' : '#F5F5F7' }}>
                     Swap
                   </button>
                 </div>
@@ -526,6 +543,18 @@ const ResultsStep = ({ builds: initialBuilds, budget, usageType, onReset, optimi
     setIsCustomized(true);
   };
 
+  const handleUpdatePrice = (bi, ct, newPrice) => {
+    setBuilds(prev => {
+      const u = [...prev]; const b = { ...u[bi] };
+      const oldComp = b.components[ct];
+      b.components = { ...b.components, [ct]: { ...oldComp, price: newPrice } };
+      b.total_cost = Object.values(b.components).filter(Boolean).reduce((s, c) => s + (c.price || 0), 0);
+      b.budget_utilization = Math.round((b.total_cost / budget) * 1000) / 10;
+      u[bi] = b; return u;
+    });
+    setIsCustomized(true);
+  };
+
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={ease} className="space-y-6">
       <div className="text-center mb-2">
@@ -544,7 +573,7 @@ const ResultsStep = ({ builds: initialBuilds, budget, usageType, onReset, optimi
       )}
 
       <div className="space-y-5">
-        {builds.map((b, i) => <BuildCard key={i} build={b} index={i} onSwapComponent={handleSwap} />)}
+        {builds.map((b, i) => <BuildCard key={i} build={b} index={i} onSwapComponent={handleSwap} onUpdatePrice={handleUpdatePrice} />)}
       </div>
 
       <div className="text-center pt-4 flex justify-center gap-3">
