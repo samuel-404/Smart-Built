@@ -318,12 +318,12 @@ const UsageStep = ({ usageType, setUsageType, onNext, onBack }) => {
   ];
 
   const [activeGroup, setActiveGroup] = useState(null);
-  
+
   // Find selected item name for button summary
   let selectedItemName = "None";
   usageGroups.forEach(g => {
     const found = g.items.find(i => i.id === usageType);
-    if(found) selectedItemName = found.name;
+    if (found) selectedItemName = found.name;
   });
 
   return (
@@ -337,11 +337,11 @@ const UsageStep = ({ usageType, setUsageType, onNext, onBack }) => {
         {usageGroups.map((g, i) => {
           const isActive = activeGroup === i;
           const hasSelected = g.items.some(item => item.id === usageType);
-          
+
           return (
-            <div key={i} className="soft-card overflow-hidden transition-all duration-300" 
+            <div key={i} className="soft-card overflow-hidden transition-all duration-300"
               style={{ border: hasSelected ? `1.5px solid ${g.color}` : '1.5px solid transparent' }}>
-              <button 
+              <button
                 onClick={() => setActiveGroup(isActive ? null : i)}
                 className="w-full flex items-center justify-between p-4 text-left hover:bg-black/[0.02] transition-colors"
                 style={{ background: hasSelected ? g.bgOpacity : '#fff' }}
@@ -360,13 +360,13 @@ const UsageStep = ({ usageType, setUsageType, onNext, onBack }) => {
                   <Icons.arrowRight />
                 </div>
               </button>
-              
+
               <AnimatePresence>
                 {isActive && (
-                  <motion.div 
-                    initial={{ height: 0, opacity: 0 }} 
-                    animate={{ height: 'auto', opacity: 1 }} 
-                    exit={{ height: 0, opacity: 0 }} 
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
                     transition={ease}
                     className="bg-white border-t border-gray-100"
                   >
@@ -406,7 +406,7 @@ const UsageStep = ({ usageType, setUsageType, onNext, onBack }) => {
             Selected: <span style={{ color: '#0071E3' }}>{selectedItemName}</span>
           </span>
           <motion.button onClick={onNext} disabled={!usageType} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all" 
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all"
             style={{ background: '#1D1D1F', color: '#fff' }}>
             Continue <Icons.arrowRight />
           </motion.button>
@@ -416,7 +416,7 @@ const UsageStep = ({ usageType, setUsageType, onNext, onBack }) => {
   );
 };
 
-─────────
+// ─── CPU Brand Step ──────────────────────────────────────────
 const CpuBrandStep = ({ cpuBrand, setCpuBrand, onNext, onBack }) => {
   const brands = [
     { id: 'Intel', name: 'Intel', desc: 'Core i3, i5, i7, i9', icon: Icons.intel, brandColor: '#0071C5', hoverBg: 'rgba(0,113,197,0.08)' },
