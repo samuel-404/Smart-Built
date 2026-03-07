@@ -709,6 +709,45 @@
         "integrated_graphics": true,
         "igpu_name": "Intel UHD 770",
         "category": "mid-range"
+      },
+      {
+        "id": "cpu_030",
+        "name": "Intel Core Ultra 9 285K",
+        "brand": "Intel",
+        "socket": "LGA1851",
+        "cores": 24,
+        "threads": 24,
+        "base_clock": 3.7,
+        "boost_clock": 5.7,
+        "tdp": 125,
+        "performance_score": 105,
+        "gaming_score": 95,
+        "price": 60000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": true,
+        "igpu_name": "Intel Graphics",
+        "category": "enthusiast"
+      },
+      {
+        "id": "cpu_031",
+        "name": "AMD Ryzen 9 9950X3D",
+        "brand": "AMD",
+        "socket": "AM5",
+        "cores": 16,
+        "threads": 32,
+        "base_clock": 4.1,
+        "boost_clock": 5.7,
+        "tdp": 162,
+        "performance_score": 106,
+        "gaming_score": 115,
+        "price": 68000,
+        "supported_ram": [
+          "DDR5"
+        ],
+        "integrated_graphics": false,
+        "category": "enthusiast"
       }
     ],
     "motherboards": [
@@ -1333,6 +1372,34 @@
         "category": "budget",
         "ray_tracing": true,
         "xess_version": 1
+      },
+      {
+        "id": "gpu_020",
+        "name": "NVIDIA GeForce RTX 4070 Ti SUPER",
+        "brand": "NVIDIA",
+        "vram": 16,
+        "vram_type": "GDDR6X",
+        "tdp": 285,
+        "length_mm": 310,
+        "performance_score": 87,
+        "price": 75000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "dlss_version": 3
+      },
+      {
+        "id": "gpu_021",
+        "name": "AMD Radeon RX 7900 GRE",
+        "brand": "AMD",
+        "vram": 16,
+        "vram_type": "GDDR6",
+        "tdp": 260,
+        "length_mm": 280,
+        "performance_score": 85,
+        "price": 55000,
+        "category": "high-end",
+        "ray_tracing": true,
+        "fsr_version": 3
       }
     ],
     "ram": [
@@ -2085,67 +2152,637 @@
     ]
   },
   "usage_profiles": {
-    "gaming": {
-      "name": "Gaming",
+    "gaming_esports": {
+      "name": "Esports Gaming PC",
+      "category": "Gaming & Streaming PC",
       "weights": {
-        "gpu": 0.4,
-        "cpu": 0.25,
+        "gpu": 0.45,
+        "cpu": 0.35,
+        "ram": 0.1,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "gpu_vram": 6,
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "gaming_casual": {
+      "name": "Casual Gaming PC",
+      "category": "Gaming & Streaming PC",
+      "weights": {
+        "gpu": 0.35,
+        "cpu": 0.3,
         "ram": 0.15,
         "storage": 0.1,
         "motherboard": 0.05,
         "psu": 0.05
       },
       "min_requirements": {
+        "gpu_vram": 4,
         "ram_gb": 16,
-        "storage_gb": 500,
+        "cpu_cores": 4
+      }
+    },
+    "gaming_aaa": {
+      "name": "AAA Gaming PC",
+      "category": "Gaming & Streaming PC",
+      "weights": {
+        "gpu": 0.5,
+        "cpu": 0.2,
+        "ram": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "gpu_vram": 8,
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "streaming_mobile": {
+      "name": "Mobile Streaming PC",
+      "category": "Streaming & Simulator PC",
+      "weights": {
+        "cpu": 0.4,
+        "ram": 0.3,
+        "gpu": 0.1,
+        "storage": 0.1,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "streaming_pc": {
+      "name": "PC Streaming PC",
+      "category": "Streaming & Simulator PC",
+      "weights": {
+        "cpu": 0.35,
+        "gpu": 0.35,
+        "ram": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "streaming_vr": {
+      "name": "VR Gaming PC",
+      "category": "Streaming & Simulator PC",
+      "weights": {
+        "gpu": 0.5,
+        "cpu": 0.25,
+        "ram": 0.1,
+        "storage": 0.05,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "gpu_vram": 8,
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "simulator": {
+      "name": "Simulator PC",
+      "category": "Streaming & Simulator PC",
+      "weights": {
+        "cpu": 0.4,
+        "gpu": 0.4,
+        "ram": 0.1,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "gpu_vram": 8,
+        "ram_gb": 32,
+        "cpu_cores": 8
+      }
+    },
+    "music_flstudio": {
+      "name": "FL Studio PC",
+      "category": "Music Production PCs",
+      "weights": {
+        "cpu": 0.5,
+        "ram": 0.3,
+        "storage": 0.1,
+        "motherboard": 0.05,
+        "gpu": 0.02,
+        "psu": 0.03
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6,
+        "storage_gb": 1000
+      }
+    },
+    "music_ableton": {
+      "name": "Ableton PC",
+      "category": "Music Production PCs",
+      "weights": {
+        "cpu": 0.5,
+        "ram": 0.3,
+        "storage": 0.1,
+        "motherboard": 0.05,
+        "gpu": 0.02,
+        "psu": 0.03
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6,
+        "storage_gb": 1000
+      }
+    },
+    "video_premiere": {
+      "name": "Adobe Premiere Pro PC",
+      "category": "Video Editing PC",
+      "weights": {
+        "cpu": 0.4,
+        "gpu": 0.3,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
         "gpu_vram": 6
       }
     },
-    "content_creation": {
-      "name": "Content Creation / Video Editing",
+    "video_davinci": {
+      "name": "Davinci Resolve Studio PC",
+      "category": "Video Editing PC",
+      "weights": {
+        "gpu": 0.45,
+        "cpu": 0.25,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "layout3d_maya": {
+      "name": "Maya PC",
+      "category": "Layout & 3D Generalist PC",
       "weights": {
         "cpu": 0.35,
-        "gpu": 0.25,
-        "ram": 0.25,
+        "gpu": 0.35,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.02,
+        "psu": 0.03
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "layout3d_cinema4d": {
+      "name": "Cinema 4D PC",
+      "category": "Layout & 3D Generalist PC",
+      "weights": {
+        "cpu": 0.35,
+        "gpu": 0.35,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.02,
+        "psu": 0.03
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "gamedev_unity": {
+      "name": "Unity PC",
+      "category": "Game Development PC",
+      "weights": {
+        "cpu": 0.35,
+        "gpu": 0.3,
+        "ram": 0.2,
         "storage": 0.1,
         "motherboard": 0.03,
         "psu": 0.02
       },
       "min_requirements": {
         "ram_gb": 32,
-        "storage_gb": 1000,
-        "cpu_cores": 8
+        "cpu_cores": 6,
+        "gpu_vram": 6
       }
     },
-    "student": {
-      "name": "Student / General Use",
+    "gamedev_ue5": {
+      "name": "Unreal Engine 5 PC",
+      "category": "Game Development PC",
       "weights": {
+        "gpu": 0.4,
         "cpu": 0.3,
-        "storage": 0.25,
         "ram": 0.2,
-        "gpu": 0.1,
-        "motherboard": 0.1,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "gamedev_blender": {
+      "name": "Blender PC",
+      "category": "Game Development PC",
+      "weights": {
+        "gpu": 0.45,
+        "cpu": 0.25,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "arch_autocad": {
+      "name": "AutoCAD PC",
+      "category": "Architectural PC",
+      "weights": {
+        "cpu": 0.45,
+        "ram": 0.25,
+        "gpu": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.05,
         "psu": 0.05
       },
       "min_requirements": {
-        "ram_gb": 8,
-        "storage_gb": 256
+        "ram_gb": 16,
+        "cpu_cores": 6
       }
     },
-    "workstation": {
-      "name": "Professional Workstation",
+    "arch_sketchup": {
+      "name": "Sketchup PC",
+      "category": "Architectural PC",
       "weights": {
-        "cpu": 0.35,
+        "cpu": 0.45,
+        "ram": 0.25,
+        "gpu": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "arch_revit": {
+      "name": "Revit PC",
+      "category": "Architectural PC",
+      "weights": {
+        "cpu": 0.4,
         "ram": 0.3,
         "gpu": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 4
+      }
+    },
+    "arch_vray": {
+      "name": "V-Ray PC",
+      "category": "Architectural PC",
+      "weights": {
+        "gpu": 0.45,
+        "cpu": 0.35,
+        "ram": 0.15,
+        "storage": 0.03,
+        "motherboard": 0.01,
+        "psu": 0.01
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "arch_corona": {
+      "name": "Corona Render PC",
+      "category": "Architectural PC",
+      "weights": {
+        "cpu": 0.5,
+        "ram": 0.25,
+        "gpu": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 12
+      }
+    },
+    "arch_octane": {
+      "name": "Octane Render PC",
+      "category": "Architectural PC",
+      "weights": {
+        "gpu": 0.55,
+        "cpu": 0.2,
+        "ram": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 10
+      }
+    },
+    "model3d_blender": {
+      "name": "Blender PC",
+      "category": "3D Modelling PC",
+      "weights": {
+        "gpu": 0.4,
+        "cpu": 0.3,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "model3d_lumion": {
+      "name": "Lumion PC",
+      "category": "3D Modelling PC",
+      "weights": {
+        "gpu": 0.5,
+        "cpu": 0.25,
+        "ram": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 10
+      }
+    },
+    "model3d_3dsmax": {
+      "name": "3DsMax PC",
+      "category": "3D Modelling PC",
+      "weights": {
+        "cpu": 0.35,
+        "gpu": 0.35,
+        "ram": 0.2,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 8
+      }
+    },
+    "model3d_solidworks": {
+      "name": "Solidworks PC",
+      "category": "3D Modelling PC",
+      "weights": {
+        "cpu": 0.45,
+        "ram": 0.25,
+        "gpu": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "vfx_nuke": {
+      "name": "Nuke PC",
+      "category": "VFX Animation PC",
+      "weights": {
+        "ram": 0.35,
+        "cpu": 0.3,
+        "storage": 0.15,
+        "gpu": 0.1,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 64,
+        "cpu_cores": 8,
+        "storage_gb": 1000
+      }
+    },
+    "vfx_houdini": {
+      "name": "Houdini PC",
+      "category": "VFX Animation PC",
+      "weights": {
+        "ram": 0.35,
+        "cpu": 0.35,
+        "gpu": 0.15,
         "storage": 0.1,
         "motherboard": 0.03,
         "psu": 0.02
       },
       "min_requirements": {
         "ram_gb": 64,
-        "storage_gb": 2000,
-        "cpu_cores": 12
+        "cpu_cores": 12,
+        "gpu_vram": 8
+      }
+    },
+    "comp_aftereffects": {
+      "name": "Adobe After Effects PC",
+      "category": "Compositing PC",
+      "weights": {
+        "ram": 0.4,
+        "cpu": 0.35,
+        "storage": 0.1,
+        "gpu": 0.1,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 64,
+        "cpu_cores": 8,
+        "storage_gb": 1000
+      }
+    },
+    "graphic_photoshop": {
+      "name": "Adobe Photoshop PC",
+      "category": "Graphic Designing PCs",
+      "weights": {
+        "cpu": 0.4,
+        "ram": 0.3,
+        "storage": 0.1,
+        "gpu": 0.1,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "graphic_illustrator": {
+      "name": "Adobe Illustrator PC",
+      "category": "Graphic Designing PCs",
+      "weights": {
+        "cpu": 0.4,
+        "ram": 0.3,
+        "storage": 0.1,
+        "gpu": 0.1,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "graphic_corel": {
+      "name": "Corel Draw Graphics Suite",
+      "category": "Graphic Designing PCs",
+      "weights": {
+        "cpu": 0.4,
+        "ram": 0.3,
+        "storage": 0.1,
+        "gpu": 0.1,
+        "motherboard": 0.05,
+        "psu": 0.05
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 4
+      }
+    },
+    "graphic_figma": {
+      "name": "Figma PC",
+      "category": "Graphic Designing PCs",
+      "weights": {
+        "cpu": 0.3,
+        "ram": 0.3,
+        "storage": 0.1,
+        "gpu": 0.1,
+        "motherboard": 0.1,
+        "psu": 0.1
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 4
+      }
+    },
+    "corp_ai": {
+      "name": "AI & DeepLearning PC",
+      "category": "Corporate Use Case",
+      "weights": {
+        "gpu": 0.55,
+        "ram": 0.2,
+        "cpu": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.03,
+        "psu": 0.02
+      },
+      "min_requirements": {
+        "ram_gb": 32,
+        "cpu_cores": 8,
+        "gpu_vram": 12
+      }
+    },
+    "corp_coding": {
+      "name": "Coding PC",
+      "category": "Corporate Use Case",
+      "weights": {
+        "cpu": 0.4,
+        "ram": 0.3,
+        "storage": 0.1,
+        "gpu": 0.05,
+        "motherboard": 0.05,
+        "psu": 0.1
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "corp_trading": {
+      "name": "Trading PC",
+      "category": "Corporate Use Case",
+      "weights": {
+        "cpu": 0.3,
+        "ram": 0.3,
+        "gpu": 0.15,
+        "storage": 0.05,
+        "motherboard": 0.1,
+        "psu": 0.1
+      },
+      "min_requirements": {
+        "ram_gb": 16,
+        "cpu_cores": 6
+      }
+    },
+    "corp_office": {
+      "name": "Home & Office PC",
+      "category": "Corporate Use Case",
+      "weights": {
+        "cpu": 0.3,
+        "ram": 0.25,
+        "storage": 0.15,
+        "gpu": 0.1,
+        "motherboard": 0.1,
+        "psu": 0.1
+      },
+      "min_requirements": {
+        "ram_gb": 8,
+        "cpu_cores": 4
+      }
+    },
+    "corp_signage": {
+      "name": "Digital Signage PC",
+      "category": "Corporate Use Case",
+      "weights": {
+        "cpu": 0.25,
+        "ram": 0.2,
+        "storage": 0.15,
+        "gpu": 0.1,
+        "motherboard": 0.15,
+        "psu": 0.15
+      },
+      "min_requirements": {
+        "ram_gb": 8,
+        "cpu_cores": 4
       }
     }
   },

@@ -188,118 +188,235 @@ const BudgetStep = ({ budget, setBudget, onNext }) => {
 
 // ─── Usage Step ──────────────────────────────────────────────
 const UsageStep = ({ usageType, setUsageType, onNext, onBack }) => {
-  const types = [
+  const usageGroups = [
     {
-      id: 'gaming',
-      name: 'Gaming',
-      desc: 'High FPS, ray tracing',
-      image: '/gaming-icon.png',
-      themeColor: '#A855F7', // Purple
-      bgOpacity: 'rgba(168, 85, 247, 0.15)'
+      category: 'Gaming & Streaming PC',
+      icon: Icons.gamepad,
+      color: '#A855F7',
+      bgOpacity: 'rgba(168, 85, 247, 0.1)',
+      items: [
+        { id: 'gaming_esports', name: 'Esports Gaming PC' },
+        { id: 'gaming_casual', name: 'Casual Gaming PC' },
+        { id: 'gaming_aaa', name: 'AAA Gaming PC' }
+      ]
     },
     {
-      id: 'content_creation',
-      name: 'Content Creation',
-      desc: 'Video editing, 3D rendering',
-      image: '/content-creation-icon.png',
-      themeColor: '#F97316', // Orange
-      bgOpacity: 'rgba(249, 115, 22, 0.15)'
+      category: 'Streaming & Simulator PC',
+      icon: Icons.video,
+      color: '#EC4899',
+      bgOpacity: 'rgba(236, 72, 153, 0.1)',
+      items: [
+        { id: 'streaming_mobile', name: 'Mobile Streaming PC' },
+        { id: 'streaming_pc', name: 'PC Streaming PC' },
+        { id: 'streaming_vr', name: 'VR Gaming PC' },
+        { id: 'simulator', name: 'Simulator PC' }
+      ]
     },
     {
-      id: 'student',
-      name: 'Student / General',
-      desc: 'Office, coding, browsing',
-      image: '/student-icon.png',
-      themeColor: '#22C55E', // Green
-      bgOpacity: 'rgba(34, 197, 94, 0.15)'
+      category: 'Music Production PCs',
+      icon: Icons.sparkle,
+      color: '#EAB308',
+      bgOpacity: 'rgba(234, 179, 8, 0.1)',
+      items: [
+        { id: 'music_flstudio', name: 'FL Studio PC' },
+        { id: 'music_ableton', name: 'Ableton PC' }
+      ]
     },
     {
-      id: 'workstation',
-      name: 'Workstation',
-      desc: 'CAD, simulations',
-      image: '/workstation-icon.png',
-      themeColor: '#3B82F6', // Blue
-      bgOpacity: 'rgba(59, 130, 246, 0.15)'
+      category: 'Video Editing PC',
+      icon: Icons.video,
+      color: '#F97316',
+      bgOpacity: 'rgba(249, 115, 22, 0.1)',
+      items: [
+        { id: 'video_premiere', name: 'Adobe Premiere Pro' },
+        { id: 'video_davinci', name: 'Davinci Resolve Studio' }
+      ]
     },
+    {
+      category: 'Layout & 3D Generalist',
+      icon: Icons.briefcase,
+      color: '#06B6D4',
+      bgOpacity: 'rgba(6, 182, 212, 0.1)',
+      items: [
+        { id: 'layout3d_maya', name: 'Maya PC' },
+        { id: 'layout3d_cinema4d', name: 'Cinema 4D PC' }
+      ]
+    },
+    {
+      category: 'Game Development PC',
+      icon: Icons.cpu,
+      color: '#14B8A6',
+      bgOpacity: 'rgba(20, 184, 166, 0.1)',
+      items: [
+        { id: 'gamedev_unity', name: 'Unity PC' },
+        { id: 'gamedev_ue5', name: 'Unreal Engine 5 PC' },
+        { id: 'gamedev_blender', name: 'Blender PC' }
+      ]
+    },
+    {
+      category: 'Architectural PC',
+      icon: Icons.book,
+      color: '#8B5CF6',
+      bgOpacity: 'rgba(139, 92, 246, 0.1)',
+      items: [
+        { id: 'arch_autocad', name: 'AutoCAD PC' },
+        { id: 'arch_sketchup', name: 'Sketchup PC' },
+        { id: 'arch_revit', name: 'Revit PC' },
+        { id: 'arch_vray', name: 'V-Ray PC' },
+        { id: 'arch_corona', name: 'Corona Render PC' },
+        { id: 'arch_octane', name: 'Octane Render PC' }
+      ]
+    },
+    {
+      category: '3D Modelling PC',
+      icon: Icons.gpu,
+      color: '#3B82F6',
+      bgOpacity: 'rgba(59, 130, 246, 0.1)',
+      items: [
+        { id: 'model3d_blender', name: 'Blender PC' },
+        { id: 'model3d_lumion', name: 'Lumion PC' },
+        { id: 'model3d_3dsmax', name: '3DsMax PC' },
+        { id: 'model3d_solidworks', name: 'Solidworks PC' }
+      ]
+    },
+    {
+      category: 'VFX & Compositing PC',
+      icon: Icons.video,
+      color: '#6366F1',
+      bgOpacity: 'rgba(99, 102, 241, 0.1)',
+      items: [
+        { id: 'vfx_nuke', name: 'Nuke PC' },
+        { id: 'vfx_houdini', name: 'Houdini PC' },
+        { id: 'comp_aftereffects', name: 'After Effects PC' }
+      ]
+    },
+    {
+      category: 'Graphic Designing PCs',
+      icon: Icons.sparkle,
+      color: '#10B981',
+      bgOpacity: 'rgba(16, 185, 129, 0.1)',
+      items: [
+        { id: 'graphic_photoshop', name: 'Photoshop PC' },
+        { id: 'graphic_illustrator', name: 'Illustrator PC' },
+        { id: 'graphic_corel', name: 'Corel Draw Suite' },
+        { id: 'graphic_figma', name: 'Figma PC' }
+      ]
+    },
+    {
+      category: 'Corporate Use Case',
+      icon: Icons.briefcase,
+      color: '#64748B',
+      bgOpacity: 'rgba(100, 116, 139, 0.1)',
+      items: [
+        { id: 'corp_ai', name: 'AI & DeepLearning PC' },
+        { id: 'corp_coding', name: 'Coding PC' },
+        { id: 'corp_trading', name: 'Trading PC' },
+        { id: 'corp_office', name: 'Home & Office PC' },
+        { id: 'corp_signage', name: 'Digital Signage PC' }
+      ]
+    }
   ];
 
+  const [activeGroup, setActiveGroup] = useState(null);
+  
+  // Find selected item name for button summary
+  let selectedItemName = "None";
+  usageGroups.forEach(g => {
+    const found = g.items.find(i => i.id === usageType);
+    if(found) selectedItemName = found.name;
+  });
+
   return (
-    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={ease} className="space-y-8 font-sans">
-      <div className="text-center">
+    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={ease} className="space-y-6 font-sans">
+      <div className="text-center mb-4">
         <h2 className="text-2xl font-semibold tracking-tight mb-1" style={{ color: '#1D1D1F' }}>What will you use it for?</h2>
-        <p className="text-sm" style={{ color: '#86868B' }}>Select your primary use case</p>
+        <p className="text-sm" style={{ color: '#86868B' }}>Select your exact use-case profile</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
-        {types.map((t, i) => {
-          const isSelected = usageType === t.id;
+      <div className="max-h-[50vh] overflow-y-auto pr-2 pb-4 scrollbar-hide space-y-3">
+        {usageGroups.map((g, i) => {
+          const isActive = activeGroup === i;
+          const hasSelected = g.items.some(item => item.id === usageType);
+          
           return (
-            <motion.button
-              key={t.id}
-              onClick={() => setUsageType(t.id)}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ ...ease, delay: i * 0.05 }}
-              className="group relative p-6 rounded-2xl text-left transition-all duration-300 overflow-hidden"
-              style={{
-                background: '#fff',
-                border: `2px solid ${isSelected ? t.themeColor : 'transparent'}`,
-                boxShadow: isSelected ? `0 4px 20px ${t.bgOpacity}` : '0 2px 8px rgba(0,0,0,0.04)'
-              }}
-              onMouseEnter={(e) => {
-                if (!isSelected) {
-                  e.currentTarget.style.borderColor = t.themeColor;
-                  e.currentTarget.style.boxShadow = `0 4px 12px ${t.bgOpacity}`;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (!isSelected) {
-                  e.currentTarget.style.borderColor = 'transparent';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(0,0,0,0.04)';
-                }
-              }}
-            >
-              <div
-                className="w-16 h-16 rounded-2xl flex items-center justify-center mb-4 transition-colors duration-300"
-                style={{ backgroundColor: t.bgOpacity }}
+            <div key={i} className="soft-card overflow-hidden transition-all duration-300" 
+              style={{ border: hasSelected ? `1.5px solid ${g.color}` : '1.5px solid transparent' }}>
+              <button 
+                onClick={() => setActiveGroup(isActive ? null : i)}
+                className="w-full flex items-center justify-between p-4 text-left hover:bg-black/[0.02] transition-colors"
+                style={{ background: hasSelected ? g.bgOpacity : '#fff' }}
               >
-                <img
-                  src={t.image}
-                  alt={t.name}
-                  className="w-12 h-12 object-contain transition-transform duration-300 group-hover:scale-110"
-                />
-              </div>
-              <h3 className="font-semibold text-base mb-1" style={{ color: '#1D1D1F' }}>{t.name}</h3>
-              <p className="text-sm" style={{ color: '#86868B' }}>{t.desc}</p>
-            </motion.button>
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center transition-colors"
+                    style={{ background: isActive || hasSelected ? g.color : '#F5F5F7', color: isActive || hasSelected ? '#fff' : '#86868B' }}>
+                    <g.icon />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm" style={{ color: '#1D1D1F' }}>{g.category}</h3>
+                    <p className="text-xs" style={{ color: '#86868B' }}>{g.items.length} specific profiles</p>
+                  </div>
+                </div>
+                <div className="transform transition-transform duration-300" style={{ transform: isActive ? 'rotate(90deg)' : 'rotate(0deg)', color: '#86868B' }}>
+                  <Icons.arrowRight />
+                </div>
+              </button>
+              
+              <AnimatePresence>
+                {isActive && (
+                  <motion.div 
+                    initial={{ height: 0, opacity: 0 }} 
+                    animate={{ height: 'auto', opacity: 1 }} 
+                    exit={{ height: 0, opacity: 0 }} 
+                    transition={ease}
+                    className="bg-white border-t border-gray-100"
+                  >
+                    <div className="p-4 grid grid-cols-2 gap-2">
+                      {g.items.map(item => {
+                        const isSelected = usageType === item.id;
+                        return (
+                          <button
+                            key={item.id}
+                            onClick={() => { setUsageType(item.id); setActiveGroup(null); }}
+                            className="p-3 rounded-xl text-xs font-medium text-left transition-all border"
+                            style={{
+                              borderColor: isSelected ? g.color : '#E8E8ED',
+                              backgroundColor: isSelected ? g.color : '#fff',
+                              color: isSelected ? '#fff' : '#1D1D1F',
+                            }}
+                          >
+                            {item.name}
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
           );
         })}
       </div>
 
-      <div className="flex justify-between pt-4 pb-2">
-        <button
-          onClick={onBack}
-          className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-medium transition-colors hover:bg-gray-100"
-          style={{ color: '#86868B' }}
-        >
+      <div className="flex justify-between items-center pt-2 border-t border-gray-100 mt-2">
+        <button onClick={onBack} className="flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-colors hover:bg-gray-100" style={{ color: '#86868B' }}>
           <Icons.arrowLeft /> Back
         </button>
-        <motion.button
-          onClick={onNext}
-          disabled={!usageType}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          className="flex items-center gap-2 px-8 py-3 rounded-full text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all"
-          style={{ background: '#1D1D1F', color: '#fff' }}
-        >
-          Continue <Icons.arrowRight />
-        </motion.button>
+        <div className="flex items-center gap-4">
+          <span className="text-xs font-semibold" style={{ color: '#86868B' }}>
+            Selected: <span style={{ color: '#0071E3' }}>{selectedItemName}</span>
+          </span>
+          <motion.button onClick={onNext} disabled={!usageType} whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}
+            className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-semibold disabled:opacity-40 disabled:cursor-not-allowed transition-all" 
+            style={{ background: '#1D1D1F', color: '#fff' }}>
+            Continue <Icons.arrowRight />
+          </motion.button>
+        </div>
       </div>
     </motion.div>
   );
 };
 
-// ─── CPU Brand Step ──────────────────────────────────────────
+─────────
 const CpuBrandStep = ({ cpuBrand, setCpuBrand, onNext, onBack }) => {
   const brands = [
     { id: 'Intel', name: 'Intel', desc: 'Core i3, i5, i7, i9', icon: Icons.intel, brandColor: '#0071C5', hoverBg: 'rgba(0,113,197,0.08)' },
@@ -528,7 +645,7 @@ const ResultsStep = ({ builds: initialBuilds, budget, usageType, onReset, optimi
   const [builds, setBuilds] = useState(initialBuilds);
   const [originalBuilds] = useState(initialBuilds);
   const [isCustomized, setIsCustomized] = useState(false);
-  const usageNames = { gaming: 'Gaming', content_creation: 'Content Creation', student: 'Student / General', workstation: 'Workstation' };
+  const usageNames = {}; // dynamic names handled in UI
 
   const handleSwap = (bi, ct, nc) => {
     setBuilds(prev => {
@@ -560,7 +677,7 @@ const ResultsStep = ({ builds: initialBuilds, budget, usageType, onReset, optimi
       <div className="text-center mb-2">
         <h2 className="text-2xl font-semibold tracking-tight mb-1" style={{ color: '#1D1D1F' }}>Your Builds</h2>
         <p className="text-sm" style={{ color: '#86868B' }}>
-          Optimized for <span className="font-medium" style={{ color: '#1D1D1F' }}>{usageNames[usageType]}</span> · {formatPrice(budget)} budget
+          Optimized for <span className="font-medium" style={{ color: '#1D1D1F' }}>{usageType.replace('_', ' ').replace(/\b\w/g, c => c.toUpperCase())}</span> · {formatPrice(budget)} budget
         </p>
       </div>
 
