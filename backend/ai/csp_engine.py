@@ -45,43 +45,87 @@ class CSPEngine:
         
         self._setup_constraints()
     
+    # Chipset → supported CPU architectures
+    CHIPSET_COMPAT = {
+        'A320': ['Zen','Zen+','Zen2'], 'B450': ['Zen','Zen+','Zen2','Zen3'],
+        'A520': ['Zen2','Zen3'], 'B550': ['Zen2','Zen3'], 'X570': ['Zen2','Zen3'],
+        'B650': ['Zen4','Zen5'], 'B650E': ['Zen4','Zen5'],
+        'X670': ['Zen4','Zen5'], 'X670E': ['Zen4','Zen5'],
+        'B850': ['Zen4','Zen5'], 'X870': ['Zen4','Zen5'], 'X870E': ['Zen4','Zen5'],
+        'B460': ['CometLake','RocketLake'], 'B560': ['CometLake','RocketLake'],
+        'Z490': ['CometLake','RocketLake'], 'Z590': ['CometLake','RocketLake'],
+        'B660': ['AlderLake','RaptorLake','RaptorLakeR'],
+        'B760': ['AlderLake','RaptorLake','RaptorLakeR'],
+        'H770': ['AlderLake','RaptorLake','RaptorLakeR'],
+        'Z690': ['AlderLake','RaptorLake','RaptorLakeR'],
+        'Z790': ['AlderLake','RaptorLake','RaptorLakeR'],
+    }
+    # CPU name pattern → architecture
+    CPU_ARCH = {
+        'Ryzen 3 3200G':'Zen+','Ryzen 5 3400G':'Zen+','Athlon 3000G':'Zen',
+        'Ryzen 5 3600':'Zen2','Ryzen 7 3700X':'Zen2','Ryzen 9 3900X':'Zen2',
+        'Ryzen 5 4600G':'Zen3','Ryzen 5 5500':'Zen3','Ryzen 5 5600':'Zen3',
+        'Ryzen 5 5600G':'Zen3','Ryzen 5 5600X':'Zen3','Ryzen 7 5700G':'Zen3',
+        'Ryzen 7 5800X':'Zen3','Ryzen 9 5900X':'Zen3','Ryzen 9 5950X':'Zen3',
+        'Ryzen 5 7600':'Zen4','Ryzen 7 7700':'Zen4','Ryzen 7 7700X':'Zen4',
+        'Ryzen 7 7800X3D':'Zen4','Ryzen 9 7950X':'Zen4','Ryzen 9 7950X3D':'Zen4',
+        'Ryzen 5 8600G':'Zen4','Ryzen 7 8700G':'Zen4',
+        'Ryzen 5 9600X':'Zen5','Ryzen 7 9700X':'Zen5','Ryzen 7 9800X3D':'Zen5',
+        'Ryzen 9 9900X':'Zen5','Ryzen 9 9950X':'Zen5','Ryzen 9 9950X3D':'Zen5',
+        'i5-10400F':'CometLake','i7-10700K':'CometLake',
+        'i5-11400F':'RocketLake',
+        'i3-12100F':'AlderLake','i3-12100':'AlderLake',
+        'i5-12400F':'AlderLake','i5-12400':'AlderLake',
+        'i3-13100':'RaptorLake','i5-13400F':'RaptorLake','i5-13400':'RaptorLake',
+        'i7-13700KF':'RaptorLake','i9-13900K':'RaptorLake',
+        'i5-14400F':'RaptorLakeR','i5-14600K':'RaptorLakeR',
+        'i7-14700K':'RaptorLakeR','i7-14700KF':'RaptorLakeR',
+        'i9-14900K':'RaptorLakeR','i9-14900KS':'RaptorLakeR',
+        'Core Ultra 9 285K':'ArrowLake',
+    }
+
+    def _check_cpu_mb(self, cpu, mb):
+        """Check socket + chipset generation compatibility."""
+        if cpu.get('socket') != mb.get('socket'):
+            return False
+        # Use chipset field if present, else parse from name
+        chipset = mb.get('chipset', '')
+        if not chipset:
+            for cs in sorted(self.CHIPSET_COMPAT.keys(), key=len, reverse=True):
+                if cs in mb.get('name', ''):
+                    chipset = cs
+                    break
+        if not chipset:
+            return True  # Unknown chipset → allow (socket matched)
+        cpu_name = cpu.get('name', '')
+        arch = None
+        for pattern, a in self.CPU_ARCH.items():
+            if pattern in cpu_name:
+                arch = a
+                break
+        if not arch:
+            return True  # Unknown arch → allow (socket matched)
+        return arch in self.CHIPSET_COMPAT.get(chipset, [])
+
     def _setup_constraints(self):
         """Define all compatibility constraints between components"""
         
         self.add_constraint(
             'cpu', 'motherboard',
-            lambda cpu, mb: cpu['socket'] == mb['socket'],
-            "CPU socket must match motherboard socket"
+            lambda cpu, mb: self._check_cpu_mb(cpu, mb),
+            "CPU must be compatible with motherboard socket AND chipset"
         )
         
         self.add_constraint(
             'cpu', 'ram',
-            lambda cpu, ram: ram['type'] in cpu['supported_ram'],
+            lambda cpu, ram: ram.get('type', 'DDR4') in cpu.get('supported_ram', ['DDR4', 'DDR5']),
             "RAM type must be supported by CPU"
         )
         
         self.add_constraint(
             'motherboard', 'ram',
-            lambda mb, ram: ram['type'] in mb['supported_ram'],
+            lambda mb, ram: ram.get('type', 'DDR4') in mb.get('supported_ram', ['DDR4']),
             "RAM type must be supported by motherboard"
-        )
-        
-        self.add_constraint(
-            'motherboard', 'ram',
-            lambda mb, ram: ram['sticks'] <= mb['ram_slots'],
-            "RAM sticks must not exceed motherboard slots"
-        )
-        
-        self.add_constraint(
-            'gpu', 'case',
-            lambda gpu, case: gpu['length_mm'] <= case['gpu_clearance_mm'],
-            "GPU length must fit within case clearance"
-        )
-        
-        self.add_constraint(
-            'motherboard', 'case',
-            lambda mb, case: mb['form_factor'] in case['form_factor'],
-            "Motherboard form factor must fit in case"
         )
         
         self.add_constraint(
