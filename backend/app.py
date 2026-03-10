@@ -87,6 +87,45 @@ def get_data() -> Dict[str, Any]:
     usage_profiles = {p["id"]: p for p in usage_profiles_raw}
     budget_tiers = {b["id"]: b for b in budget_tiers_raw}
     
+    # Fallback defaults if Supabase tables are empty or not seeded
+    if not usage_profiles:
+        logger.warning("Usage profiles empty from Supabase, using defaults")
+        usage_profiles = {
+            "gaming": {
+                "id": "gaming",
+                "name": "Gaming",
+                "min_requirements": {"gpu_score": 50, "cpu_score": 40},
+                "weights": {"gpu": 0.35, "cpu": 0.25, "ram": 0.12, "storage": 0.08, "motherboard": 0.10, "psu": 0.05, "case": 0.05}
+            },
+            "content_creation": {
+                "id": "content_creation",
+                "name": "Content Creation",
+                "min_requirements": {"cpu_score": 60, "ram_score": 50},
+                "weights": {"gpu": 0.25, "cpu": 0.30, "ram": 0.18, "storage": 0.10, "motherboard": 0.08, "psu": 0.05, "case": 0.04}
+            },
+            "student": {
+                "id": "student",
+                "name": "Student",
+                "min_requirements": {"cpu_score": 30},
+                "weights": {"gpu": 0.15, "cpu": 0.25, "ram": 0.18, "storage": 0.15, "motherboard": 0.12, "psu": 0.08, "case": 0.07}
+            },
+            "workstation": {
+                "id": "workstation",
+                "name": "Workstation",
+                "min_requirements": {"cpu_score": 70, "ram_score": 60},
+                "weights": {"gpu": 0.20, "cpu": 0.35, "ram": 0.20, "storage": 0.08, "motherboard": 0.08, "psu": 0.05, "case": 0.04}
+            }
+        }
+    
+    if not budget_tiers:
+        logger.warning("Budget tiers empty from Supabase, using defaults")
+        budget_tiers = {
+            "budget": {"id": "budget", "name": "Budget", "min": 30000, "max": 50000, "description": "Essential builds for everyday tasks and light gaming"},
+            "mid_range": {"id": "mid_range", "name": "Mid-Range", "min": 50000, "max": 100000, "description": "Balanced performance for gaming and productivity"},
+            "high_end": {"id": "high_end", "name": "High-End", "min": 100000, "max": 200000, "description": "Premium builds for enthusiast gaming and heavy workloads"},
+            "enthusiast": {"id": "enthusiast", "name": "Enthusiast", "min": 200000, "max": 500000, "description": "Top-tier builds with the best components available"}
+        }
+    
     _DATA_CACHE = {
         "components": structured_components,
         "usage_profiles": usage_profiles,
@@ -102,6 +141,18 @@ def health_check():
         "status": "healthy",
         "service": "SmartBuild AI Engine",
         "version": "1.0.0"
+    })
+
+
+@app.route('/api/cache/clear', methods=['POST'])
+def clear_cache():
+    """Clear the data cache to force re-fetch from Supabase"""
+    global _DATA_CACHE
+    _DATA_CACHE = None
+    logger.info("Data cache cleared")
+    return jsonify({
+        "success": True,
+        "message": "Cache cleared. Next request will fetch fresh data from Supabase."
     })
 
 

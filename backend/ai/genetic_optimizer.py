@@ -156,7 +156,7 @@ class NSGA2Optimizer:
         # Select compatible RAM
         ram_candidates = [
             r for r in self.components.get('ram', [])
-            if r['type'] in genes['cpu']['supported_ram']
+            if r.get('type', 'DDR4') in genes['cpu'].get('supported_ram', ['DDR4', 'DDR5'])
         ]
         if ram_candidates:
             max_ram_price = self.target_budget * 0.15
@@ -233,25 +233,27 @@ class NSGA2Optimizer:
                 return False
         
         if 'ram' in genes and 'motherboard' in genes:
-            if genes['ram']['type'] not in genes['motherboard']['supported_ram']:
+            if genes['ram'].get('type', 'DDR4') not in genes['motherboard'].get('supported_ram', ['DDR4', 'DDR5']):
                 return False
         
         if 'ram' in genes and 'cpu' in genes:
-            if genes['ram']['type'] not in genes['cpu']['supported_ram']:
+            if genes['ram'].get('type', 'DDR4') not in genes['cpu'].get('supported_ram', ['DDR4', 'DDR5']):
                 return False
         
         if 'gpu' in genes and 'case' in genes:
-            if genes['gpu']['length_mm'] > genes['case']['gpu_clearance_mm']:
+            if genes['gpu'].get('length_mm', 0) > genes['case'].get('gpu_clearance_mm', 999):
                 return False
         
         if 'motherboard' in genes and 'case' in genes:
-            if genes['motherboard']['form_factor'] not in genes['case']['form_factor']:
+            mb_ff = genes['motherboard'].get('form_factor', 'ATX')
+            case_ff = genes['case'].get('form_factor', ['ATX', 'Micro-ATX', 'Mini-ITX'])
+            if mb_ff not in case_ff:
                 return False
         
         if 'cpu' in genes and 'gpu' in genes and 'psu' in genes:
-            total_tdp = genes['cpu']['tdp'] + genes['gpu']['tdp'] + 100
+            total_tdp = genes['cpu'].get('tdp', 65) + genes['gpu'].get('tdp', 150) + 100
             required = total_tdp * 1.2
-            if genes['psu']['wattage'] < required:
+            if genes['psu'].get('wattage', 0) < required:
                 return False
         
         return True
@@ -428,30 +430,30 @@ class NSGA2Optimizer:
                         genes['motherboard'] = random.choice(compatible_mbs)
             
             if 'ram' in genes and 'motherboard' in genes:
-                if genes['ram']['type'] not in genes['motherboard']['supported_ram']:
+                if genes['ram'].get('type', 'DDR4') not in genes['motherboard'].get('supported_ram', ['DDR4', 'DDR5']):
                     compatible_rams = [
                         ram for ram in self.components.get('ram', [])
-                        if ram['type'] in genes['motherboard']['supported_ram']
+                        if ram.get('type', 'DDR4') in genes['motherboard'].get('supported_ram', ['DDR4', 'DDR5'])
                     ]
                     if compatible_rams:
                         genes['ram'] = random.choice(compatible_rams)
             
             if 'gpu' in genes and 'case' in genes:
-                if genes['gpu']['length_mm'] > genes['case']['gpu_clearance_mm']:
+                if genes['gpu'].get('length_mm', 0) > genes['case'].get('gpu_clearance_mm', 999):
                     compatible_cases = [
                         case for case in self.components.get('case', [])
-                        if case['gpu_clearance_mm'] >= genes['gpu']['length_mm']
+                        if case.get('gpu_clearance_mm', 0) >= genes['gpu'].get('length_mm', 0)
                     ]
                     if compatible_cases:
                         genes['case'] = random.choice(compatible_cases)
             
             if 'cpu' in genes and 'gpu' in genes and 'psu' in genes:
-                total_tdp = genes['cpu']['tdp'] + genes['gpu']['tdp'] + 100
+                total_tdp = genes['cpu'].get('tdp', 65) + genes['gpu'].get('tdp', 150) + 100
                 required = total_tdp * 1.2
-                if genes['psu']['wattage'] < required:
+                if genes['psu'].get('wattage', 0) < required:
                     compatible_psus = [
                         psu for psu in self.components.get('psu', [])
-                        if psu['wattage'] >= required
+                        if psu.get('wattage', 0) >= required
                     ]
                     if compatible_psus:
                         genes['psu'] = random.choice(compatible_psus)

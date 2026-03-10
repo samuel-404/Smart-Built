@@ -1181,6 +1181,7 @@
         "name": "Gigabyte B450M DS3H V2",
         "brand": "Gigabyte",
         "socket": "AM4",
+        "chipset": "B450",
         "form_factor": "Micro-ATX",
         "supported_ram": [
           "DDR4"
@@ -1199,6 +1200,7 @@
         "name": "MSI A520M-A PRO",
         "brand": "MSI",
         "socket": "AM4",
+        "chipset": "A520",
         "form_factor": "Micro-ATX",
         "supported_ram": [
           "DDR4"
@@ -1217,6 +1219,7 @@
         "name": "ASRock B450M Pro4-F",
         "brand": "ASRock",
         "socket": "AM4",
+        "chipset": "B450",
         "form_factor": "Micro-ATX",
         "supported_ram": [
           "DDR4"
@@ -1235,6 +1238,7 @@
         "name": "Gigabyte B550M DS3H",
         "brand": "Gigabyte",
         "socket": "AM4",
+        "chipset": "B550",
         "form_factor": "Micro-ATX",
         "supported_ram": [
           "DDR4"
@@ -1253,6 +1257,7 @@
         "name": "ASUS Prime A320M-K",
         "brand": "ASUS",
         "socket": "AM4",
+        "chipset": "A320",
         "form_factor": "Micro-ATX",
         "supported_ram": [
           "DDR4"

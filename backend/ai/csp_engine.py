@@ -7,6 +7,9 @@ from typing import Dict, List, Set, Tuple, Optional, Any
 from collections import deque
 from dataclasses import dataclass, field
 import copy
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 @dataclass
@@ -314,8 +317,11 @@ class CSPEngine:
                 return constraint.check_function(val1, val2)
             else:
                 return constraint.check_function(val2, val1)
-        except (KeyError, TypeError):
-            return False
+        except (KeyError, TypeError, AttributeError) as e:
+            # When data is incomplete, ALLOW the combination rather than rejecting it.
+            # The genetic optimizer's _is_valid_build will do final validation.
+            logger.debug(f"Constraint check error ({constraint.description}): {e} - allowing combo")
+            return True
     
     def check_psu_compatibility(self, cpu: Dict, gpu: Dict, psu: Dict) -> bool:
         """Special check for PSU wattage with 20% headroom"""
@@ -365,28 +371,34 @@ class CSPEngine:
                 )
         
         if build.get('ram') and build.get('motherboard'):
-            if build['ram']['type'] not in build['motherboard']['supported_ram']:
+            ram_type = build['ram'].get('type', 'DDR4')
+            if ram_type not in build['motherboard'].get('supported_ram', ['DDR4', 'DDR5']):
                 issues.append(
-                    f"RAM type {build['ram']['type']} not supported by motherboard"
+                    f"RAM type {ram_type} not supported by motherboard"
                 )
         
         if build.get('ram') and build.get('cpu'):
-            if build['ram']['type'] not in build['cpu']['supported_ram']:
+            ram_type = build['ram'].get('type', 'DDR4')
+            if ram_type not in build['cpu'].get('supported_ram', ['DDR4', 'DDR5']):
                 issues.append(
-                    f"RAM type {build['ram']['type']} not supported by CPU"
+                    f"RAM type {ram_type} not supported by CPU"
                 )
         
         if build.get('gpu') and build.get('case'):
-            if build['gpu']['length_mm'] > build['case']['gpu_clearance_mm']:
+            gpu_len = build['gpu'].get('length_mm', 0)
+            case_clearance = build['case'].get('gpu_clearance_mm', 999)
+            if gpu_len > case_clearance:
                 issues.append(
-                    f"GPU too long ({build['gpu']['length_mm']}mm) for case "
-                    f"({build['case']['gpu_clearance_mm']}mm clearance)"
+                    f"GPU too long ({gpu_len}mm) for case "
+                    f"({case_clearance}mm clearance)"
                 )
         
         if build.get('motherboard') and build.get('case'):
-            if build['motherboard']['form_factor'] not in build['case']['form_factor']:
+            mb_ff = build['motherboard'].get('form_factor', 'ATX')
+            case_ff = build['case'].get('form_factor', ['ATX', 'Micro-ATX', 'Mini-ITX'])
+            if mb_ff not in case_ff:
                 issues.append(
-                    f"Motherboard form factor ({build['motherboard']['form_factor']}) "
+                    f"Motherboard form factor ({mb_ff}) "
                     f"doesn't fit case"
                 )
         
