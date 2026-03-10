@@ -349,6 +349,9 @@ class NSGA2Optimizer:
     
     def tournament_selection(self, population: List[Individual]) -> Individual:
         """Binary tournament selection based on rank and crowding distance"""
+        if not population:
+            return None
+        
         candidates = random.sample(population, min(2, len(population)))
         
         if len(candidates) == 1:
@@ -468,6 +471,9 @@ class NSGA2Optimizer:
             parent1 = self.tournament_selection(population)
             parent2 = self.tournament_selection(population)
             
+            if parent1 is None or parent2 is None:
+                break
+            
             child1, child2 = self.crossover(parent1, parent2)
             
             child1 = self.mutate(child1)
@@ -510,6 +516,9 @@ class NSGA2Optimizer:
     def optimize(self) -> List[Individual]:
         """Run the NSGA-II optimization algorithm"""
         population = self.initialize_population()
+        
+        if not population:
+            return []
         
         for individual in population:
             self.evaluate_objectives(individual)
